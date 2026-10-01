@@ -50,6 +50,13 @@ export default defineConfig({
     }),
   },
 
+  // Emit /tech/blog/zh/rendering.html instead of .../rendering/index.html so
+  // links without a trailing slash are served directly; with directory
+  // output, Cloudflare answers every such link with a 307 to the slashed URL.
+  build: {
+    format: 'file',
+  },
+
   // Prefetch every internal link on hover so client-side navigation
   // (ClientRouter in BaseLayout) feels instant.
   prefetch: {

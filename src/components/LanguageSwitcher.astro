@@ -5,7 +5,10 @@ import { isLocale, localeLabels, locales } from '../lib/i18n';
 // /tech/blog/<lang>/..., /tech/project/<lang>/...), so this reads the current
 // path itself and renders nothing elsewhere — that way it can live in the
 // shared Header.
-const match = Astro.url.pathname.match(/^((?:\/tech)?\/(?:blog|project))\/([a-z]+)((?:\/.*)?)$/);
+// build.format 'file' makes the build-time pathname end in ".html"; links
+// elsewhere omit it, so strip it here too.
+const pathname = Astro.url.pathname.replace(/\.html$/, '');
+const match = pathname.match(/^((?:\/tech)?\/(?:blog|project))\/([a-z]+)((?:\/.*)?)$/);
 const parsed = match && isLocale(match[2]) ? { base: match[1], current: match[2], rest: match[3] } : null;
 ---
 
