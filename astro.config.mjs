@@ -57,13 +57,9 @@ export default defineConfig({
     defaultStrategy: 'hover',
   },
 
-  // Fallback meta-refresh pages. Real 301s come from public/_redirects
-  // on hosts that support it (Cloudflare Pages, Netlify).
-  redirects: {
-    '/blog': '/blog/zh',
-    '/tech/blog': '/tech/blog/zh',
-    '/tech/project': '/tech/project/zh',
-  },
+  // Redirects (/blog → /blog/zh, etc.) live only in public/_redirects.
+  // Don't also add them to an Astro `redirects` option: Cloudflare's build
+  // merges those into _redirects too and rejects the duplicate rules.
 
   vite: {
     plugins: [tailwindcss()],
