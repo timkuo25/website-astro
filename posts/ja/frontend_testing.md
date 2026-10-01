@@ -1,6 +1,6 @@
 ---
 title: "フロントエンドのテストって実際どうやるの"
-date: "2026-07-21"
+date: "2025-03-21"
 excerpt: "Test Driven Developing (is dead?)"
 sections: ["tech"]
 categories: ["web"]

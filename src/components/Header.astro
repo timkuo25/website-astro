@@ -1,5 +1,5 @@
 ---
-import { Menu, X } from '@lucide/astro';
+import { ChevronDown, Menu, X } from '@lucide/astro';
 import ThemeToggle from './ThemeToggle.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
@@ -59,26 +59,40 @@ const { homeHref, homeLabel = 'Home', links, hasMobileNav = false } = Astro.prop
     hidden
     class="sm:hidden absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] overflow-y-auto bg-white border-b border-blue-50 shadow-sm dark:bg-gray-950 dark:border-gray-800"
   >
-    <div class="px-4 py-4 space-y-4 text-sm">
-      <div class="flex items-center justify-between gap-4">
-        <div class="flex items-center gap-6 text-gray-600 dark:text-gray-400">
-          {
-            links.map((link) => (
-              <a href={link.href} class="hover:text-gray-900 transition-colors dark:hover:text-gray-100">
+    <div class="px-4 py-3 text-sm">
+      <div class="flex justify-end empty:hidden pb-3 border-b border-gray-100 dark:border-gray-800"><LanguageSwitcher /></div>
+      <ul class="divide-y divide-gray-100 dark:divide-gray-800">
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="block py-3 font-medium text-gray-700 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:text-gray-100"
+              >
                 {link.label}
               </a>
-            ))
-          }
-        </div>
-        <LanguageSwitcher />
-      </div>
-      {
-        hasMobileNav && (
-          <div class="pt-4 border-t border-gray-100 dark:border-gray-800">
-            <slot name="mobile-nav" />
-          </div>
-        )
-      }
+            </li>
+          ))
+        }
+        {
+          hasMobileNav && (
+            <li>
+              <details class="group/categories">
+                <summary class="flex items-center justify-between py-3 font-medium text-gray-700 hover:text-gray-900 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden dark:text-gray-300 dark:hover:text-gray-100">
+                  <span>Categories</span>
+                  <ChevronDown
+                    size={16}
+                    class="text-gray-400 transition-transform group-open/categories:rotate-180 dark:text-gray-500"
+                  />
+                </summary>
+                <div class="pb-3 pl-3">
+                  <slot name="mobile-nav" />
+                </div>
+              </details>
+            </li>
+          )
+        }
+      </ul>
     </div>
   </div>
 </header>
@@ -97,7 +111,7 @@ const { homeHref, homeLabel = 'Home', links, hasMobileNav = false } = Astro.prop
   document.addEventListener('click', (event) => {
     const target = event.target as Element;
     if (target.closest('[data-mobile-menu-toggle]')) {
-      setOpen(document.getElementById('mobile-menu')?.hidden ?? false);
+      setOpen(document.getElementById('mobile-menu')?.hidden === true);
     } else if (!target.closest('#mobile-menu')) {
       setOpen(false);
     }
