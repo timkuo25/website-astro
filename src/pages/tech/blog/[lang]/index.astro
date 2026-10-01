@@ -1,0 +1,17 @@
+---
+import TechBlogLayout from '../../../../layouts/TechBlogLayout.astro';
+import PostList from '../../../../components/PostList.astro';
+import { getLangStaticPaths, getSortedPosts } from '../../../../lib/posts';
+import type { Locale } from '../../../../lib/i18n';
+
+export const getStaticPaths = getLangStaticPaths;
+
+const lang = Astro.params.lang as Locale;
+const posts = await getSortedPosts('tech', lang);
+---
+
+<TechBlogLayout lang={lang} posts={posts} title="Blog — TCK" description="Technical articles by TCK">
+  <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-2 dark:text-gray-100">Blog</h1>
+  <p class="text-gray-500 mb-12 dark:text-gray-400">Think out of the box.</p>
+  <PostList posts={posts} basePath={`/tech/blog/${lang}`} showTags />
+</TechBlogLayout>

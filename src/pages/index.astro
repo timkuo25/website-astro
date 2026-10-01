@@ -1,0 +1,23 @@
+---
+import { Mail } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout section="general">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16">
+    <section>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-black dark:text-white">哈囉 慢慢看</h1>
+      <p class="mt-3 text-gray-500 dark:text-gray-400">我忘記了所有悲劇，看到的都是奇蹟</p>
+      <p class="mt-2 text-sm text-gray-400 dark:text-gray-500">📍 Taipei, Taiwan</p>
+      <div class="mt-6 flex items-center gap-4">
+        <a
+          href="mailto:timkuo860930@gmail.com"
+          class="text-black hover:text-blue-500 transition-colors dark:text-white dark:hover:text-blue-400"
+          aria-label="Email"
+        >
+          <Mail size={20} />
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

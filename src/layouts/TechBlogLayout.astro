@@ -1,0 +1,30 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CategorySidebar from '../components/CategorySidebar.astro';
+import type { PostMeta } from '../lib/posts';
+import { htmlLang, type Locale } from '../lib/i18n';
+
+interface Props {
+  lang: Locale;
+  posts: PostMeta[];
+  currentSlug?: string;
+  title?: string;
+  description?: string;
+}
+
+const { lang, posts, currentSlug, title, description } = Astro.props;
+---
+
+<BaseLayout section="tech" lang={htmlLang[lang]} title={title} description={description}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 flex flex-col sm:flex-row gap-10">
+    <aside class="sm:w-56 shrink-0">
+      <CategorySidebar
+        posts={posts}
+        basePath={`/tech/blog/${lang}`}
+        currentSlug={currentSlug}
+        allArticlesLabel="All Articles"
+      />
+    </aside>
+    <div class="flex-1 min-w-0"><slot /></div>
+  </div>
+</BaseLayout>

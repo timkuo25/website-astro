@@ -1,0 +1,81 @@
+---
+import { Font } from 'astro:assets';
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+import Header from '../components/Header.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+  section: 'general' | 'tech';
+}
+
+const {
+  title = 'TCK',
+  description = 'Personal website of TCK',
+  lang = 'en',
+  section,
+} = Astro.props;
+
+const header =
+  section === 'tech'
+    ? {
+        homeHref: '/tech',
+        links: [
+          { label: 'Resume', href: '/tech/resume' },
+          { label: 'Blog', href: '/tech/blog/zh' },
+          { label: 'Project', href: '/tech/project/zh' },
+        ],
+      }
+    : { homeHref: '/', links: [{ label: 'Blog', href: '/blog/zh' }] };
+---
+
+<html lang={lang} class="h-full antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <Font cssVariable="--font-geist-sans" preload />
+    <Font cssVariable="--font-geist-mono" />
+    <ClientRouter />
+    {/* Runs before first paint so the right theme shows without a flash.
+        A manual localStorage choice wins, then "dark by default under /tech",
+        then the OS preference everywhere else. The ClientRouter replaces
+        <html>'s attributes on every navigation, so the class is also applied
+        to the incoming document before it is swapped in. */}
+    <script is:inline>
+      (function () {
+        function applyTheme(root, pathname) {
+          try {
+            var stored = localStorage.getItem('theme');
+            var isTech = pathname.startsWith('/tech');
+            var dark = stored ? stored === 'dark' : isTech || matchMedia('(prefers-color-scheme: dark)').matches;
+            root.classList.toggle('dark', dark);
+          } catch (e) {}
+        }
+        applyTheme(document.documentElement, location.pathname);
+        if (!window.__themeSwapHooked) {
+          window.__themeSwapHooked = true;
+          document.addEventListener('astro:before-swap', function (e) {
+            applyTheme(e.newDocument.documentElement, e.to.pathname);
+          });
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-full flex flex-col bg-slate-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+    <Header homeHref={header.homeHref} links={header.links} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <footer class="border-t border-gray-100 py-8 dark:border-gray-800">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center text-sm text-gray-400 dark:text-gray-500">
+        © {new Date().getFullYear()} TCK
+      </div>
+    </footer>
+  </body>
+</html>

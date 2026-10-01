@@ -1,0 +1,34 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  homeHref: string;
+  homeLabel?: string;
+  links: { label: string; href: string }[];
+}
+
+const { homeHref, homeLabel = 'Home', links } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 bg-white border-b border-blue-50 dark:bg-gray-950 dark:border-gray-800">
+  <nav class="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <a
+      href={homeHref}
+      class="font-semibold text-gray-900 hover:text-gray-600 transition-colors dark:text-gray-100 dark:hover:text-gray-300"
+    >
+      {homeLabel}
+    </a>
+    <div class="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+      {
+        links.map((link) => (
+          <a href={link.href} class="hover:text-gray-900 transition-colors dark:hover:text-gray-100">
+            {link.label}
+          </a>
+        ))
+      }
+      <LanguageSwitcher />
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>

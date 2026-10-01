@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const experience = [
+  { org: 'Perfect Corp.', role: 'Frontend Engineer' },
+  { org: 'National Taiwan University', role: 'B.B.A. & M.B.A. in Information Management' },
+  { org: 'Abacus Inc.', role: 'Software Engineer Intern' },
+];
+---
+
+<BaseLayout section="tech" title="Resume" description="Chung-Chia Kuo's work and education history">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16">
+    <section>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-black dark:text-white">Resume</h1>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-6 dark:text-blue-300">Was at</h2>
+      <div class="space-y-6">
+        {
+          experience.map(({ org, role }) => (
+            <div class="flex justify-between items-start">
+              <div>
+                <p class="font-semibold text-gray-900 dark:text-gray-100">{org}</p>
+                <p class="text-sm text-gray-500 mt-0.5 dark:text-gray-400">{role}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</BaseLayout>

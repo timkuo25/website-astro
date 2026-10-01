@@ -1,0 +1,63 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  title: string;
+}
+
+const { headings, title } = Astro.props;
+---
+
+{
+  headings.length > 0 && (
+    <nav class="text-sm" data-toc>
+      <p class="font-semibold text-gray-900 mb-3 dark:text-gray-100">{title}</p>
+      <ul class="space-y-2">
+        {headings.map((heading) => (
+          <li class:list={[heading.depth === 3 && 'pl-3']}>
+            <a
+              href={`#${heading.slug}`}
+              data-toc-link={heading.slug}
+              class="block text-gray-500 hover:text-gray-900 transition-colors dark:text-gray-400 dark:hover:text-gray-100 data-active:text-blue-600 data-active:font-medium dark:data-active:text-blue-400"
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<script>
+  // Highlights the heading currently near the top of the viewport.
+  // Re-run on every page load, since client-side navigation swaps the
+  // article and its table of contents without re-running module scripts.
+  let observer: IntersectionObserver | undefined;
+
+  document.addEventListener('astro:page-load', () => {
+    observer?.disconnect();
+    observer = undefined;
+
+    const links = new Map<string, HTMLElement>();
+    for (const link of document.querySelectorAll<HTMLElement>('[data-toc-link]')) {
+      links.set(link.dataset.tocLink!, link);
+    }
+
+    const headings = [...links.keys()]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (headings.length === 0) return;
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (!visible) return;
+        for (const [id, link] of links) link.toggleAttribute('data-active', id === visible.target.id);
+      },
+      { rootMargin: '0px 0px -70% 0px' }
+    );
+    headings.forEach((heading) => observer!.observe(heading));
+  });
+</script>

@@ -1,0 +1,76 @@
+---
+import type { PostMeta } from '../lib/posts';
+import { categories, categoryLabels } from '../lib/categories';
+
+interface Props {
+  posts: PostMeta[];
+  basePath: string;
+  currentSlug?: string;
+  allArticlesLabel: string;
+}
+
+const { posts, basePath, currentSlug, allArticlesLabel } = Astro.props;
+
+const currentCategories = currentSlug
+  ? (posts.find((post) => post.slug === currentSlug)?.categories ?? [])
+  : [];
+
+const activeCategories = categories.filter((category) =>
+  posts.some((post) => post.categories.includes(category))
+);
+---
+
+{/* Native <details> handles expand/collapse, so this needs no JavaScript.
+    The category of the current post starts open. */}
+<nav class="text-sm">
+  <a
+    href={basePath}
+    class:list={[
+      'block font-semibold mb-4',
+      currentSlug
+        ? 'text-gray-600 hover:text-gray-900 transition-colors dark:text-gray-400 dark:hover:text-gray-100'
+        : 'text-gray-900 dark:text-gray-100',
+    ]}
+  >
+    {allArticlesLabel}
+  </a>
+
+  <ul class="space-y-1">
+    {
+      activeCategories.map((category) => (
+        <li>
+          <details class="group" open={currentCategories.includes(category)}>
+            <summary class="w-full flex items-center justify-between gap-2 py-1.5 font-medium text-gray-700 hover:text-gray-900 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden dark:text-gray-300 dark:hover:text-gray-100">
+              <span>{categoryLabels[category]}</span>
+              <span
+                aria-hidden="true"
+                class="text-xs text-gray-400 transition-transform group-open:rotate-180 dark:text-gray-500"
+              >
+                ▾
+              </span>
+            </summary>
+            <ul class="mt-1 mb-2 ml-3 space-y-1 border-l border-gray-100 pl-3 dark:border-gray-800">
+              {posts
+                .filter((post) => post.categories.includes(category))
+                .map((post) => (
+                  <li>
+                    <a
+                      href={`${basePath}/${post.slug}`}
+                      class:list={[
+                        'block py-1',
+                        post.slug === currentSlug
+                          ? 'font-medium text-gray-900 dark:text-gray-100'
+                          : 'text-gray-500 hover:text-gray-900 transition-colors dark:text-gray-400 dark:hover:text-gray-100',
+                      ]}
+                    >
+                      {post.title}
+                    </a>
+                  </li>
+                ))}
+            </ul>
+          </details>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

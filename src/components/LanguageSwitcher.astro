@@ -1,0 +1,37 @@
+---
+import { isLocale, localeLabels, locales } from '../lib/i18n';
+
+// Only blog and project routes are localized (/blog/<lang>/...,
+// /tech/blog/<lang>/..., /tech/project/<lang>/...), so this reads the current
+// path itself and renders nothing elsewhere — that way it can live in the
+// shared Header.
+const match = Astro.url.pathname.match(/^((?:\/tech)?\/(?:blog|project))\/([a-z]+)((?:\/.*)?)$/);
+const parsed = match && isLocale(match[2]) ? { base: match[1], current: match[2], rest: match[3] } : null;
+---
+
+{
+  parsed && (
+    <select
+      data-language-switcher
+      aria-label="Language"
+      class="text-sm text-gray-600 bg-white border border-gray-200 rounded-md pl-2 pr-6 py-1 hover:border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-300 cursor-pointer dark:text-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-600"
+    >
+      {locales.map((locale) => (
+        <option value={`${parsed.base}/${locale}${parsed.rest}`} selected={locale === parsed.current}>
+          {localeLabels[locale]}
+        </option>
+      ))}
+    </select>
+  )
+}
+
+<script>
+  import { navigate } from 'astro:transitions/client';
+
+  // Delegated on document: module scripts run once, but the select is
+  // replaced on every client-side navigation.
+  document.addEventListener('change', (event) => {
+    const select = event.target as HTMLSelectElement;
+    if (select.matches('[data-language-switcher]')) navigate(select.value);
+  });
+</script>
