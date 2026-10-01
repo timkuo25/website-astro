@@ -84,7 +84,7 @@ src/
 2. 填資料並送出（使用者互動）
 3. 檢查畫面與行為結果
 
-要注意的是 Integration Test 是不會跟外部互動的，因此如果登入表單要測 loading 或 response 回來的 case，需要用到 MSW 來攔截 request 並模擬 response
+要注意的是 Integration Test 是不會跟外部互動的，因此如果登入表單要測 loading 或 response 回來的 case，需要用到 [MSW](https://mswjs.io/) 來攔截 request 並模擬 response
 
 寫成 [Vitest](https://vitest.dev/)（測試 library）+ [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)（Render 與操作 React 元件） 大概會像這樣：
 

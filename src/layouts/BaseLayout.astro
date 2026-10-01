@@ -68,7 +68,9 @@ const header =
     </script>
   </head>
   <body class="min-h-full flex flex-col bg-slate-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
-    <Header homeHref={header.homeHref} links={header.links} />
+    <Header homeHref={header.homeHref} links={header.links} hasMobileNav={Astro.slots.has('mobile-nav')}>
+      <slot name="mobile-nav" slot="mobile-nav" />
+    </Header>
     <main class="flex-1">
       <slot />
     </main>

@@ -13,17 +13,20 @@ interface Props {
 }
 
 const { lang, posts, currentSlug, title, description } = Astro.props;
+const sidebarProps = {
+  posts,
+  basePath: `/tech/blog/${lang}`,
+  currentSlug,
+  allArticlesLabel: 'All Articles',
+};
 ---
 
 <BaseLayout section="tech" lang={htmlLang[lang]} title={title} description={description}>
+  {/* On mobile the categories move into the header's hamburger menu. */}
+  <CategorySidebar slot="mobile-nav" {...sidebarProps} />
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 flex flex-col sm:flex-row gap-10">
-    <aside class="sm:w-56 shrink-0">
-      <CategorySidebar
-        posts={posts}
-        basePath={`/tech/blog/${lang}`}
-        currentSlug={currentSlug}
-        allArticlesLabel="All Articles"
-      />
+    <aside class="hidden sm:block sm:w-56 shrink-0">
+      <CategorySidebar {...sidebarProps} />
     </aside>
     <div class="flex-1 min-w-0"><slot /></div>
   </div>

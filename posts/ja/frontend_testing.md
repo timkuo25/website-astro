@@ -83,7 +83,7 @@ src/
 2. データを入力して送信する（ユーザー操作）
 3. 画面と挙動の結果を確認する
 
-注意点として、Integration Test は外部と通信しません。そのため、ログインフォームで loading やレスポンスが返ってきた後の挙動をテストしたい場合は、MSW を使ってリクエストをインターセプトし、レスポンスをモックする必要があります。
+注意点として、Integration Test は外部と通信しません。そのため、ログインフォームで loading やレスポンスが返ってきた後の挙動をテストしたい場合は、[MSW](https://mswjs.io/) を使ってリクエストをインターセプトし、レスポンスをモックする必要があります。
 
 [Vitest](https://vitest.dev/)（テストライブラリ）+ [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)（React コンポーネントの render と操作用）で書くと、大体こんな感じになります：
 

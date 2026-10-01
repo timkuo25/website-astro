@@ -1,6 +1,6 @@
 ---
 title: "How Frontend Testing Is Actually Done"
-date: "2026-07-21"
+date: "2025-03-21"
 excerpt: "Test Driven Developing (is dead?)"
 sections: ["tech"]
 categories: ["web"]
@@ -83,7 +83,7 @@ Frontend integration tests stitch components together to make sure a larger comp
 2. Fill in data and submit it (user interaction)
 3. Check the resulting screen and behavior
 
-Note that integration tests don't talk to anything external, so if you need to test the login form's loading state or what happens when a response comes back, you'll need MSW to intercept the request and mock the response.
+Note that integration tests don't talk to anything external, so if you need to test the login form's loading state or what happens when a response comes back, you'll need [MSW](https://mswjs.io/) to intercept the request and mock the response.
 
 Written with [Vitest](https://vitest.dev/) (the test library) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) (for rendering and interacting with React components), it looks roughly like this:
 
