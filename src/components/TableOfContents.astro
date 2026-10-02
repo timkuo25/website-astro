@@ -31,14 +31,21 @@ const { headings, title } = Astro.props;
 }
 
 <script>
-  // Highlights the heading currently near the top of the viewport.
+  // Highlights the last heading above a trigger line, normally 30% down the
+  // viewport. Short final sections can never scroll up that far, so over the
+  // last stretch of scrolling the line slides down to the viewport bottom:
+  // it still sweeps the document top to bottom, so every heading gets its
+  // turn in order and the last one is active at the very bottom.
+  // Jumping to a heading (TOC click or a #heading-N URL) pins that heading
+  // instead: near the end the page can't scroll it to the top, so the line
+  // would point at a later one. The pin lasts until the user scrolls.
   // Re-run on every page load, since client-side navigation swaps the
   // article and its table of contents without re-running module scripts.
-  let observer: IntersectionObserver | undefined;
+  let cleanup: (() => void) | undefined;
 
   document.addEventListener('astro:page-load', () => {
-    observer?.disconnect();
-    observer = undefined;
+    cleanup?.();
+    cleanup = undefined;
 
     const links = new Map<string, HTMLElement>();
     for (const link of document.querySelectorAll<HTMLElement>('[data-toc-link]')) {
@@ -50,14 +57,62 @@ const { headings, title } = Astro.props;
       .filter((el): el is HTMLElement => el !== null);
     if (headings.length === 0) return;
 
-    observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.find((entry) => entry.isIntersecting);
-        if (!visible) return;
-        for (const [id, link] of links) link.toggleAttribute('data-active', id === visible.target.id);
-      },
-      { rootMargin: '0px 0px -70% 0px' }
-    );
-    headings.forEach((heading) => observer!.observe(heading));
+    const highlight = (activeId: string | undefined) => {
+      for (const [id, link] of links) link.toggleAttribute('data-active', id === activeId);
+    };
+
+    let pinned = links.has(decodeURIComponent(location.hash.slice(1)))
+      ? decodeURIComponent(location.hash.slice(1))
+      : undefined;
+
+    const update = () => {
+      if (pinned) return highlight(pinned);
+
+      const viewport = window.innerHeight;
+      const baseLine = viewport * 0.3;
+      const ramp = viewport - baseLine;
+      const remaining = Math.max(0, document.documentElement.scrollHeight - (window.scrollY + viewport));
+      const progress = Math.min(1, Math.max(0, 1 - remaining / ramp));
+      // +1 so a heading sitting exactly on the viewport bottom still counts.
+      const line = baseLine + ramp * progress + 1;
+
+      let active: HTMLElement | undefined;
+      for (const heading of headings) {
+        if (heading.getBoundingClientRect().top > line) break;
+        active = heading;
+      }
+      highlight(active?.id);
+    };
+
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+    const onLinkClick = (event: MouseEvent) => {
+      const link = (event.target as Element).closest<HTMLElement>('[data-toc-link]');
+      if (!link) return;
+      pinned = link.dataset.tocLink;
+      highlight(pinned);
+    };
+    // Only drop the pin here; the scroll that follows recomputes the highlight.
+    const onUserScrollInput = () => {
+      pinned = undefined;
+    };
+
+    const userScrollEvents = ['wheel', 'touchmove', 'keydown'] as const;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    document.addEventListener('click', onLinkClick);
+    for (const type of userScrollEvents) window.addEventListener(type, onUserScrollInput, { passive: true });
+    update();
+
+    cleanup = () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      document.removeEventListener('click', onLinkClick);
+      for (const type of userScrollEvents) window.removeEventListener(type, onUserScrollInput);
+    };
   });
 </script>

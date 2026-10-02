@@ -10,10 +10,10 @@ const lang = Astro.params.lang as Locale;
 const posts = await getSortedPosts('project', lang);
 ---
 
-<BaseLayout section="tech" lang={htmlLang[lang]} title="Project — TCK" description="Things I've built.">
+<BaseLayout section="tech" lang={htmlLang[lang]} title="Project — TCK" description="Mostly hand-written.">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
     <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-2 dark:text-gray-100">Project</h1>
-    <p class="text-gray-500 mb-12 dark:text-gray-400">Things I've built.</p>
+    <p class="text-gray-500 mb-12 dark:text-gray-400">Mostly hand-written.</p>
     <PostList posts={posts} basePath={`/tech/project/${lang}`} showTags />
   </div>
 </BaseLayout>
