@@ -4,6 +4,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PostNav from '../../../../components/PostNav.astro';
 import Tags from '../../../../components/Tags.astro';
 import UntranslatedNotice from '../../../../components/UntranslatedNotice.astro';
+import ViewCount from '../../../../components/ViewCount.astro';
 import { getPostStaticPaths, type PostPageProps } from '../../../../lib/posts';
 import { htmlLang, type Locale } from '../../../../lib/i18n';
 
@@ -28,6 +29,7 @@ const basePath = `/tech/project/${lang}`;
       <header class="mb-10">
         <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{post.title}</h1>
         <Tags tags={post.tags} />
+        <ViewCount slug={post.slug} class="mt-4 text-xs text-gray-400 tracking-wide dark:text-gray-500" />
       </header>
 
       {!post.translated && <UntranslatedNotice />}

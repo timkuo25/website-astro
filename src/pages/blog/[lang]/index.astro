@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostList from '../../../components/PostList.astro';
+import TotalViews from '../../../components/TotalViews.astro';
 import { getLangStaticPaths, getSortedPosts } from '../../../lib/posts';
 import { htmlLang, type Locale } from '../../../lib/i18n';
 
@@ -8,10 +9,14 @@ export const getStaticPaths = getLangStaticPaths;
 
 const lang = Astro.params.lang as Locale;
 const posts = await getSortedPosts('general', lang);
+const slugs = posts.map((post) => post.slug);
 ---
 
 <BaseLayout section="general" lang={htmlLang[lang]} description="Articles and thoughts by Chung-Chia (Tim) Kuo">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+    {/* Top-right corner on desktop, bottom of the page on mobile. */}
+    <TotalViews slugs={slugs} class="hidden sm:flex justify-end mb-10" />
     <PostList posts={posts} basePath={`/blog/${lang}`} />
+    <TotalViews slugs={slugs} class="flex sm:hidden justify-center mt-16" />
   </div>
 </BaseLayout>

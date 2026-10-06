@@ -106,7 +106,9 @@ $$a^{-1} \equiv b \ (\text{mod } n)$$
 
 例えば $\text{mod } 11$ のもとで、$3$ のモジュラ逆数は $\{\, 4 + 11z \mid z \in \mathbb{Z} \,\}$、つまり $\{\ldots, -18, -7, 4, 15, 26, \ldots\}$ です。$3 \times 4 = 12 \equiv 1 \ (\text{mod } 11)$ だからです
 
-$a$ が $n$ を法とするモジュラ逆数を持つ $\iff$ $a$ と $n$ が互いに素。モジュラ逆数は[拡張ユークリッドの互除法（Extended Euclidean）](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95)で求められます
+$a$ が $n$ を法とするモジュラ逆数を持つ $\iff$ $a$ と $n$ が互いに素。モジュラ逆数は[拡張ユークリッドの互除法（Extended Euclidean）](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95)、または後述するフェルマーの小定理で求められます
+
+$a^{p-2} \equiv a^{-1} \ (\text{mod } p)$
 
 ## フェルマーの小定理
 

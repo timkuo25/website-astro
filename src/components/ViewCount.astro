@@ -1,0 +1,50 @@
+---
+// Shows a post's view count from the Worker in worker/index.ts.
+// Stays hidden until the count arrives, so nothing shows under `astro dev`
+// (no Worker there) or if the API fails.
+import { Eye } from '@lucide/astro';
+
+interface Props {
+  slug: string;
+  class?: string;
+}
+
+const { slug, class: className } = Astro.props;
+---
+
+<span data-view-count={slug} class:list={['inline-flex items-center gap-1', className]} hidden>
+  <Eye size={13} aria-hidden="true" />
+  <span data-view-count-value></span>
+  <span class="sr-only">views</span>
+</span>
+
+<script>
+  // Count one view per post per browser session; later visits in the same
+  // session (refreshes, back/forward, client-side navigation) only read.
+  // Re-run on every page load, since client-side navigation swaps the page
+  // without re-running module scripts.
+  document.addEventListener('astro:page-load', async () => {
+    const el = document.querySelector<HTMLElement>('[data-view-count]');
+    const slug = el?.dataset.viewCount;
+    if (!el || !slug) return;
+
+    const sessionKey = `viewed:${slug}`;
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem(sessionKey) !== null;
+    } catch {}
+
+    try {
+      const res = await fetch(`/api/views/${encodeURIComponent(slug)}`, { method: seen ? 'GET' : 'POST' });
+      if (!res.ok) return;
+      const { views } = (await res.json()) as { views: number };
+      try {
+        sessionStorage.setItem(sessionKey, '1');
+      } catch {}
+      // The user may have navigated away while the request was in flight.
+      if (!el.isConnected) return;
+      el.querySelector('[data-view-count-value]')!.textContent = views.toLocaleString('en-US');
+      el.hidden = false;
+    } catch {}
+  });
+</script>

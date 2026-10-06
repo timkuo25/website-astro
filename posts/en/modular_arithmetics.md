@@ -106,7 +106,9 @@ $$a^{-1} \equiv b \ (\text{mod } n)$$
 
 For example, under $\text{mod } 11$, the modular inverses of $3$ are $\{\, 4 + 11z \mid z \in \mathbb{Z} \,\}$, that is, $\{\ldots, -18, -7, 4, 15, 26, \ldots\}$, because $3 \times 4 = 12 \equiv 1 \ (\text{mod } 11)$.
 
-$a$ has a modular inverse modulo $n$ $\iff$ $a$ and $n$ are coprime. The modular inverse can be found with the [Extended Euclidean algorithm](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95).
+$a$ has a modular inverse modulo $n$ $\iff$ $a$ and $n$ are coprime. The modular inverse can be found with the [Extended Euclidean algorithm](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95), or with Fermat's little theorem, covered below:
+
+$a^{p-2} \equiv a^{-1} \ (\text{mod } p)$
 
 ## Fermat's Little Theorem
 

@@ -106,7 +106,9 @@ $$a^{-1} \equiv b \ (\text{mod } n)$$
 
 例如在 $\text{mod } 11$ 之下，$3$ 的模反元素為 $\{\, 4 + 11z \mid z \in \mathbb{Z} \,\}$，也就是 $\{\ldots, -18, -7, 4, 15, 26, \ldots\}$，因為 $3 \times 4 = 12 \equiv 1 \ (\text{mod } 11)$
 
-$a$ 對於 $n$ 存在模反元素 $\iff$ $a$ 與 $n$ 互質，可以用[擴展歐幾里得法（Extended Euclidean）](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95)求模反元素
+$a$ 對於 $n$ 存在模反元素 $\iff$ $a$ 與 $n$ 互質，可以用[擴展歐幾里得法（Extended Euclidean）](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95)求模反元素，或下面會提到的費馬小定理
+
+$a^{p-2} \equiv a^{-1} \ (\text{mod } p)$
 
 ## 費馬小定理
 

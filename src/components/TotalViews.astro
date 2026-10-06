@@ -1,0 +1,41 @@
+---
+// Total views of the given posts. Hidden until the count arrives, so nothing
+// shows under `astro dev` (no Worker there) or if the API fails.
+// Pass display/alignment classes (e.g. `flex justify-end`) via `class`.
+import { Eye } from '@lucide/astro';
+
+interface Props {
+  slugs: string[];
+  class?: string;
+}
+
+const { slugs, class: className } = Astro.props;
+---
+
+<p
+  data-views-total={slugs.join(',')}
+  class:list={['items-center gap-1.5 text-xs text-gray-400 dark:text-gray-500', className]}
+  hidden
+>
+  <Eye size={13} aria-hidden="true" />
+  <span><span data-views-value></span> total views</span>
+</p>
+
+<script>
+  import { fetchViewCounts, formatCount } from '../lib/view-counts';
+
+  // A page may render more than one counter (e.g. sidebar on desktop, page
+  // bottom on mobile); they share one request through fetchViewCounts.
+  // Re-run on every page load, since client-side navigation swaps the page
+  // without re-running module scripts.
+  document.addEventListener('astro:page-load', () => {
+    for (const el of document.querySelectorAll<HTMLElement>('[data-views-total]')) {
+      fetchViewCounts(el.dataset.viewsTotal!.split(',')).then((views) => {
+        if (!views || !el.isConnected) return;
+        const total = Object.values(views).reduce((sum, count) => sum + count, 0);
+        el.querySelector('[data-views-value]')!.textContent = formatCount(total);
+        el.hidden = false;
+      });
+    }
+  });
+</script>

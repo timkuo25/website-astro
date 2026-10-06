@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import CategorySidebar from '../components/CategorySidebar.astro';
+import TotalViews from '../components/TotalViews.astro';
 import type { PostMeta } from '../lib/posts';
 import { htmlLang, type Locale } from '../lib/i18n';
 
@@ -19,6 +20,7 @@ const sidebarProps = {
   currentSlug,
   allArticlesLabel: 'All Articles',
 };
+const slugs = posts.map((post) => post.slug);
 ---
 
 <BaseLayout section="tech" lang={htmlLang[lang]} title={title} description={description}>
@@ -27,7 +29,13 @@ const sidebarProps = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 flex flex-col sm:flex-row gap-10">
     <aside class="hidden sm:block sm:w-56 shrink-0">
       <CategorySidebar {...sidebarProps} />
+      <TotalViews slugs={slugs} class="flex mt-8 pt-6 border-t border-gray-100 dark:border-gray-800" />
     </aside>
-    <div class="flex-1 min-w-0"><slot /></div>
+    <div class="flex-1 min-w-0">
+      <slot />
+      {/* The sidebar lives in the hamburger menu on mobile, so the counter
+          moves to the bottom of the page instead. */}
+      <TotalViews slugs={slugs} class="flex sm:hidden justify-center mt-16" />
+    </div>
   </div>
 </BaseLayout>

@@ -5,6 +5,7 @@ import PostNav from '../../../../components/PostNav.astro';
 import Tags from '../../../../components/Tags.astro';
 import TableOfContents from '../../../../components/TableOfContents.astro';
 import UntranslatedNotice from '../../../../components/UntranslatedNotice.astro';
+import ViewCount from '../../../../components/ViewCount.astro';
 import { estimateReadingMinutes, getPostStaticPaths, type PostPageProps } from '../../../../lib/posts';
 import { categoryLabels } from '../../../../lib/categories';
 import type { Locale } from '../../../../lib/i18n';
@@ -44,6 +45,7 @@ const basePath = `/tech/blog/${lang}`;
 
           <div class="flex items-center gap-2 mt-4 text-xs text-gray-400 tracking-wide dark:text-gray-500">
             <span>{readingMinutes} min read</span>
+            <ViewCount slug={post.slug} class="before:content-['·'] before:mr-2" />
           </div>
         </header>
 
