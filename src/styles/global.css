@@ -167,6 +167,15 @@ body {
   overflow-y: hidden;
 }
 
+/* Highlighted math, used as \htmlClass{math-highlight}{...} in posts */
+.prose .katex .math-highlight {
+  color: #c2410c;
+}
+
+.dark .prose .katex .math-highlight {
+  color: #fb923c;
+}
+
 .dark .prose h2,
 .dark .prose h3 {
   color: #f3f4f6;

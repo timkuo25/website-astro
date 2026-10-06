@@ -41,7 +41,15 @@ export default defineConfig({
       remarkPlugins: [remarkMath],
       rehypePlugins: [
         rehypeHeadingCounterIds,
-        rehypeKatex,
+        // Allow \htmlClass so math can be colored with theme-aware CSS
+        // classes (e.g. .math-highlight in global.css) instead of fixed hex.
+        [
+          rehypeKatex,
+          {
+            trust: (/** @type {{ command: string }} */ ctx) => ctx.command === '\\htmlClass',
+            strict: (/** @type {string} */ code) => (code === 'htmlExtension' ? 'ignore' : 'warn'),
+          },
+        ],
         rehypeNewTabLinks,
         rehypeOptimizeImages,
         rehypeImageFigure,
