@@ -31,7 +31,7 @@ export async function getSortedPosts(section: Section, locale: Locale): Promise<
   return all
     .filter((entry) => {
       const { locale: entryLocale } = splitId(entry.id);
-      return entryLocale === defaultLocale && entry.data.sections.includes(section);
+      return entryLocale === defaultLocale && !entry.data.draft && entry.data.sections.includes(section);
     })
     .map((canonical) => {
       const { slug } = splitId(canonical.id);

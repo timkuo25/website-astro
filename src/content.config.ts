@@ -20,6 +20,9 @@ const posts = defineCollection({
     sections: z.array(z.enum(sections)).default([]),
     categories: z.array(z.enum(categories)).default([]),
     tags: z.array(z.string()).default([]),
+    // Unfinished posts: no page, and left out of lists, the sidebar and
+    // prev/next links. Read from the defaultLocale file.
+    draft: z.boolean().default(false),
   }),
 });
 

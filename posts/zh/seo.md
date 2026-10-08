@@ -1,13 +1,15 @@
 ---
-title: "淺談搜尋引擎、廣告，到 SEO 與 AEO"
+title: "淺談搜尋引擎、廣告到 SEO"
 date: "2026-03-15"
 excerpt: "老闆說我們產品要做 SEO"
 sections: ["tech"]
 categories: ["martech", "ai"]
-tags: ["SEO", "AEO", "RAG"]
+tags: ["SEO", "SEM", "Keyword Research", "Customer Acquisition", "Influencer Marketing"]
 ---
 
-在[產品該追蹤什麼數據]()中有提到 SEO 屬於 [AARRR 框架](https://www.slideshare.net/slideshow/startup-metrics-for-pirates-long-version/89026) 中的第一步 Acquisition，也就是獲取新客戶的環節。這步還包含了投放廣告、經營社群網站等其他行銷手法。那麼 SEO 重要在哪？這篇文章會討論 SEO 誕生的背景：搜尋引擎的商業模式、誰需要/不需要做 SEO，以及 AI 時代日漸重要的 AEO，希望能對不知道該不該做 SEO/AEO 的新創、看著老闆喊「我們產品要做 SEO！」而一臉懵的 marketing / RD 們一點想法
+在[產品該追蹤什麼數據](/tech/blog/zh/product_analytics#heading-5)中有提到 SEO 屬於 [AARRR 框架](https://www.slideshare.net/slideshow/startup-metrics-for-pirates-long-version/89026) 中的第一步 Acquisition，也就是獲取新客戶的環節。這步還包含了投放廣告、經營社群網站等其他行銷手法。那麼 SEO 重要在哪？這篇文章會討論 SEO 誕生的背景：搜尋引擎的商業模式、誰需要/不需要做 SEO，以及 AI 時代日漸重要的 AEO，希望能對不知道該不該做 SEO/AEO 的新創、看著老闆喊「我們產品要做 SEO！」而一臉懵的 marketing / RD 們一點想法
+
+這是系列文的上集，下集在 [AI 時代的搜尋與曝光](/tech/blog/zh/aeo)
 
 ![Acquisition 包含 SEO](https://res.cloudinary.com/dazoegq66/image/upload/v1791365046/seo/aarrr_acquisition_seo.png)
 
@@ -56,15 +58,15 @@ tags: ["SEO", "AEO", "RAG"]
 
 壹加壹自己做繁中字幕工具 [What'Sub](https://www.youtube.com/watch?v=h2e-Me48tHI)，只用自己頻道的一支影片宣布上線，一週就有上千人付費訂閱。他們不需要 SEO，頻道觀眾本身就是獲客管道。並且他們創作了十幾年，對業界痛點有深刻的理解，是產品成功的重要原因
 
-這條路的前提是**你或別人已經有名氣**，而這往往是十幾年累積出來的，不是一般人想複製就能複製的
+這條路的前提是**你或別人已經有名氣**，而這往往是十幾年累積出來的，不是一般人想複製就能複製的。強大的個人影響力與對痛點的洞察，往往比盲目砸 SEO 更有效
 
 ### 需不需要 SEO
 
-判斷標準：你的客戶會不會用搜尋找到你？
+判斷標準：客戶會不會用搜尋找到你？
 
 | Case | 需要 SEO 嗎 | 原因 |
 | --- | --- | --- |
-| 內容網站、部落格、媒體 | 非常需要 | 搜尋流量就是命脈 |
+| 內容網站、部落格、媒體 | 非常需要 | 流量就是命脈 |
 | 一般商家 | 可以做 | 使用者遇到問題會直接搜尋，在地商家也要經營 Google 商家檔案 |
 | 電商 | 需要，通常搭配 SEM | 商品頁要能被搜到，熱門關鍵字競爭激烈時再用廣告補 |
 | 全新品類的產品 | 效果有限 | 使用者根本不知道要搜什麼關鍵字，得先靠社群、網紅教育市場 |
@@ -74,10 +76,59 @@ tags: ["SEO", "AEO", "RAG"]
 | 要登入才看得到的 SaaS 後台、App 內頁 | 不需要 | 搜尋引擎本來就爬不到 |
 | 短期活動、快閃 | 來不及 | SEO 要好幾個月才有效，用 SEM 或社群比較實際 |
 
+## SEO 要做什麼
 
+### 提升連結
+
+讓外部網站連結到自己、自己網站的頁面互相連結、[提交 sitemap](https://www.yesharris.com/seo-basic/sitemap-seo/)
+
+### 關鍵字研究
+
+從網站、產品定位想出使用者會用什麼關鍵字，也可以用工具分析市場
+
+- [Ahrefs](https://ahrefs.com/)
+- [OpenSEO](https://openseo.so/)
+
+可以關注搜尋量、競爭程度、搜尋意圖（info、nav、trans、CI）等指標。新創或小網站可以從[長尾關鍵字](https://ranking.works/knowledge/%E9%95%B7%E5%B0%BE%E9%97%9C%E9%8D%B5%E5%AD%97/)（例如：前端效能優化實戰教學）切入，比較容易打贏大站
+
+![](https://res.cloudinary.com/dazoegq66/image/upload/v1791429846/seo/search_demand_curve_long_tail_keywords.png)
+
+
+### 確保爬蟲能正確理解網站
+
+- 寫好網頁 metadata（title、meta）
+- 使用正確的 html tag（h1、h2、h3、navbar、header、footer...）
+- 寫 [JSON-LD](https://seo.lucas-futures.com/glossary/json-ld/)
+- 設定 [robots.txt](https://frankchiu.io/seo-robots-txt/)，不要擋掉希望被搜到的頁面
+- 如果有許多重複內容，設 [canonical 標籤](https://frankchiu.io/seo-canonical-tags/)
+- 如果你的網站是 [CSR](/tech/blog/zh/rendering#heading-4)，Google 爬蟲現在還沒辦法有效的拿到完整內容。如果你是 blog 或新聞網等純內容網站，可以考慮用[其他渲染方式](/tech/blog/zh/rendering#heading-10)
+
+
+### 網站效能與 Core Web Vitals
+
+如果網站效能很差，也會影響 SEO 排名。Core Web Vitals 是三項評估網站效能的指標
+
+- 最大內容繪製 (LCP)，衡量載入速度
+- 首次輸入延遲 (FID)，衡量頁面互動性
+- 累積版面配置移位 (CLS)，衡量視覺穩定性
+
+可以用 [PageSpeed Insights](https://pagespeed.web.dev/) 檢視自己網站的效能，找出優化的方向
+
+### 確保內容品質、能解決使用者問題
+
+- [EEAT 原則](https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=zh-tw)
+- 不要為了網站排名寫文章或塞奇怪的關鍵字
+- 不要用 AI 產出大量垃圾內容
+
+![愛奇藝：中國有嘻哈](https://res.cloudinary.com/dazoegq66/image/upload/v1791430396/seo/rap_of_china_good_will_stay_meme.png)
+
+### 用 AI 改善網站技術問題
+
+- [claude-seo](https://github.com/AgricIDaniel/claude-seo)
+- [seo-skills](https://github.com/seranking/seo-skills)
 
 ## Reference
 
 - [What'Sub](https://www.youtube.com/watch?v=h2e-Me48tHI)
 - [從 0 到被 Google 看見:AI 時代的 SEO 生存指南](https://www.youtube.com/watch?v=iE8Byp-mMsc)
-
+- [什麼是 Core Web Vitals (CWV)？](https://www.cloudflare.com/zh-tw/learning/performance/what-are-core-web-vitals/)

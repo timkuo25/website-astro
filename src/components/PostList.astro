@@ -18,7 +18,7 @@ const { posts, basePath, showTags = false } = Astro.props;
   ) : (
     <ul class="space-y-10">
       {posts.map((post) => (
-        <li>
+        <li data-post-categories={post.categories.join(' ')}>
           <a href={`${basePath}/${post.slug}`} class="group block">
             <h2 class="text-lg font-semibold text-gray-900 group-hover:text-gray-600 transition-colors dark:text-gray-100 dark:group-hover:text-gray-400">
               {post.title}
