@@ -2,6 +2,7 @@
 import { ArrowLeft, ArrowUp } from '@lucide/astro';
 import TechBlogLayout from '../../../../layouts/TechBlogLayout.astro';
 import PostList from '../../../../components/PostList.astro';
+import RandomQuote from '../../../../components/RandomQuote.astro';
 import { getLangStaticPaths, getSortedPosts } from '../../../../lib/posts';
 import { categories } from '../../../../lib/categories';
 import type { Locale } from '../../../../lib/i18n';
@@ -26,7 +27,7 @@ const filters = [...categories, 'all'];
 
 <TechBlogLayout lang={lang} posts={posts} title="Blog — TCK" description="Technical articles by TCK">
   <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-2 dark:text-gray-100">Blog</h1>
-  <p class="text-gray-500 mb-12 dark:text-gray-400">我只知道我一無所知</p>
+  <RandomQuote lang={lang} class="text-gray-500 mb-12 dark:text-gray-400" />
 
   {/* Shown until a category is picked. The script below swaps it for the
       filtered list; without JavaScript the full list shows instead. */}

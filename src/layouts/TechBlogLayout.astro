@@ -1,8 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import CategorySidebar from '../components/CategorySidebar.astro';
-import TotalViews from '../components/TotalViews.astro';
-import type { PostMeta } from '../lib/posts';
+import TotalViews from '../components/TotalViews.astro';import type { PostMeta } from '../lib/posts';
 import { htmlLang, type Locale } from '../lib/i18n';
 
 interface Props {
@@ -37,5 +36,4 @@ const slugs = posts.map((post) => post.slug);
           moves to the bottom of the page instead. */}
       <TotalViews slugs={slugs} class="flex sm:hidden justify-center mt-16" />
     </div>
-  </div>
-</BaseLayout>
+  </div></BaseLayout>

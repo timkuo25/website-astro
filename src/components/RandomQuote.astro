@@ -1,0 +1,35 @@
+---
+// A random quote from src/lib/quotes.ts in the given language. The site is
+// static, so the server renders the first quote and the browser swaps in a
+// random one on every page load.
+import { quotes } from '../lib/quotes';
+import type { Locale } from '../lib/i18n';
+
+interface Props {
+  lang: Locale;
+  class?: string;
+}
+
+const { lang, class: className } = Astro.props;
+const localized = quotes[lang].filter((text) => text.trim());
+---
+
+{
+  localized.length > 0 && (
+    <p data-random-quote={JSON.stringify(localized)} class={className}>
+      {localized[0]}
+    </p>
+  )
+}
+
+<script>
+  // Re-run on every page load, since client-side navigation swaps the page
+  // without re-running module scripts.
+  document.addEventListener('astro:page-load', () => {
+    const el = document.querySelector<HTMLElement>('[data-random-quote]');
+    if (!el) return;
+
+    const quotes = JSON.parse(el.dataset.randomQuote!) as string[];
+    el.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+  });
+</script>
