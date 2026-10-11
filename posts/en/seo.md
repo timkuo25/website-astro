@@ -34,9 +34,9 @@ Early search engines weren't very user-friendly. Unless a page paid for ads or p
 | Business model | Search ads targeted by user behavior; ads make up most of parent company Alphabet's revenue | Search ads (Microsoft Advertising), a [side business](https://www.microsoft.com/investor/reports/ar25/index.html) for Microsoft next to Azure and Office | Ads across its portal (news, finance, mail); search ads [in partnership with Microsoft](https://techcrunch.com/2009/07/29/microsoft-yahoo-search-deal-the-official-press-release/) since 2009 |
 | AI integration | [AI Overviews and AI Mode](https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q4-2025/) (Gemini) | [Copilot](https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/) (OpenAI models) | [Yahoo Scout](https://techxplore.com/news/2026-03-yahoo-ai-powered-scout-roots.html) (Anthropic's Claude) |
 
-## Who does and doesn't need SEO
+## Who does and doesn't need advertising / SEO
 
-Advertising is a commercial activity that, at scale, **delivers information**, **shapes perception** and **prompts action** among a target audience. If you want to sell something, you'll almost always need it, unless you already have a strong reputation or are famous, or you're a monopoly that doesn't need promotion (like a state-owned utility). So the question usually isn't "should we advertise?" but "which kind of advertising?", and the answer depends on **how your customers usually discover new things**.
+[Advertising](https://en.wikipedia.org/wiki/Advertising) is a commercial activity that, at scale, **delivers information**, **shapes perception** and **prompts action** among a target audience. If you want to sell something, you'll almost always need it, unless you already have a strong reputation or are famous, or you're a monopoly that doesn't need promotion (like a state-owned utility). So the question usually isn't "should we advertise?" but "which kind of advertising?", and the answer depends on **how your customers usually discover new things**.
 
 ### SEO
 

@@ -1,33 +1,136 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+
 const experience = [
-  { org: 'Perfect Corp.', role: 'Frontend Engineer' },
-  { org: 'National Taiwan University', role: 'B.B.A. & M.B.A. in Information Management' },
-  { org: 'Abacus Inc.', role: 'Software Engineer Intern' },
+  {
+    org: 'Perfect Corp.',
+    role: 'Frontend Engineer',
+    period: 'Mar 2025 – Present',
+    projects: [
+      {
+        name: 'B2B – AI/AR Beauty Tech Solutions',
+        points: [
+          'Developed React-based virtual try-on UIs for 30+ enterprise clients, integrating an in-house AI/AR SDK for makeup and skincare on photos and live video.',
+          'Resolved 350+ production issues across client integrations in 14 months, including cross-device camera and VTO rendering bugs and module lifecycle issues blocking client launches.',
+          "Customized a generic SDK baseline into brand-specific experiences from Figma designs, handling contract-based module access, market-specific i18n, tailored user flows, per-brand responsive specs, custom Countly events, and user consent requirements.",
+        ],
+      },
+      {
+        name: 'B2C – AI Image & Video Generator Platform',
+        points: [
+          'Led the project by designing and building the frontend architecture from scratch using Next.js, delivering 20+ responsive AI tools and streamlining state management with Redux Toolkit.',
+          'Developed a reusable Canvas-based editor to accelerate AI tool development across 10+ applications.',
+          'Optimized face detection for photo editing applications using Web Workers, preventing UI blocking.',
+          'Designed standardized cross-page data schemas in collaboration with the team, minimizing redundant development effort and streamlining product iterations.',
+          'Engineered a polling-based async workflow for long-running AI video generation tasks, enabling non-blocking UX with progress tracking and completion notifications.',
+          'Constructed scalable product experiences by creating robust Strapi-powered CMS landing pages.',
+          'Improved organic search visibility by implementing SEO optimizations including metadata and JSON-LD structured data, contributing to a 20% increase in platform revenue within one month.',
+          'Integrated GA event tracking to measure user behavior and conversion funnels, enabling the product team to make informed, data-driven decisions.',
+          'Enabled global payment support for a 13-language platform by integrating 2Checkout payment flows.',
+        ],
+      },
+    ],
+  },
+  {
+    org: 'Abacus Inc.',
+    role: 'Software Engineer Intern',
+    projects: [],
+  },
 ];
+
+const education = [
+  { org: 'National Taiwan University', degree: 'B.B.A. & M.B.A. in Information Management' },
+];
+
+const skills = [
+  {
+    group: 'Frontend Architecture',
+    items: ['React', 'Next.js', 'Redux', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Fabric.js', 'Canvas API', 'Web Workers'],
+  },
+  { group: 'Web Standards & Tools', items: ['Headless CMS', 'Internationalization (i18n)'] },
+  {
+    group: 'Data Engineering & Backend',
+    items: ['Apache Kafka', 'KSQL', 'Kafka Connect', 'Python', 'SQL', 'ETL Pipelines'],
+  },
+  {
+    group: 'Cloud & MarTech',
+    items: ['AWS EC2 & S3', 'Docker', 'SEO Optimization', 'JSON-LD', 'Google Analytics (GA4)', 'GTM', 'Countly'],
+  },
+];
+
+const heading = 'text-xs font-semibold uppercase tracking-widest text-blue-400 mb-6 dark:text-blue-300';
 ---
 
 <BaseLayout section="tech" title="Resume" description="Chung-Chia Kuo's work and education history">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16">
     <section>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-black dark:text-white">Resume</h1>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-black dark:text-gray-100">Chung-Chia Kuo</h1>
+      <p class="mt-3 text-gray-500 dark:text-gray-400">Frontend Engineer</p>
+      <p class="mt-2 text-sm text-gray-400 dark:text-gray-500">📍 Taipei, Taiwan</p>
+      <p class="mt-6 text-gray-700 leading-relaxed dark:text-gray-300">
+        Frontend Engineer building AI/AR web products, from virtual try-on experiences for 30+ global beauty brands to a
+        new AI music and video generation product. Beyond the frontend, I explore topics such as the web, algorithms, and
+        AI. I share my research notes on my{' '}
+        <a href="/tech/blog/en" class="text-blue-500 hover:underline dark:text-blue-400">technical blog</a>.
+      </p>
     </section>
 
     <section>
-      <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-6 dark:text-blue-300">Was at</h2>
-      <div class="space-y-6">
+      <h2 class={heading}>Work Experience</h2>
+      <div class="space-y-10">
         {
-          experience.map(({ org, role }) => (
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="font-semibold text-gray-900 dark:text-gray-100">{org}</p>
-                <p class="text-sm text-gray-500 mt-0.5 dark:text-gray-400">{role}</p>
+          experience.map(({ org, role, period, projects }) => (
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-gray-100">{org}</p>
+                  <p class="text-sm text-gray-500 mt-0.5 dark:text-gray-400">{role}</p>
+                </div>
+                {period && <p class="text-sm text-gray-400 shrink-0 dark:text-gray-500">{period}</p>}
               </div>
+              {projects.map(({ name, points }) => (
+                <div class="mt-6">
+                  <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200">{name}</h3>
+                  <ul class="mt-2 list-disc pl-5 space-y-1.5 text-sm text-gray-600 leading-relaxed dark:text-gray-400">
+                    {points.map((point) => (
+                      <li>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           ))
         }
       </div>
+    </section>
+
+    <section>
+      <h2 class={heading}>Education</h2>
+      <div class="space-y-6">
+        {
+          education.map(({ org, degree }) => (
+            <div>
+              <p class="font-semibold text-gray-900 dark:text-gray-100">{org}</p>
+              <p class="text-sm text-gray-500 mt-0.5 dark:text-gray-400">{degree}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section>
+      <h2 class={heading}>Technical Skills</h2>
+      <dl class="space-y-4">
+        {
+          skills.map(({ group, items }) => (
+            <div>
+              <dt class="text-sm font-semibold text-gray-800 dark:text-gray-200">{group}</dt>
+              <dd class="mt-1 text-sm text-gray-600 dark:text-gray-400">{items.join(' · ')}</dd>
+            </div>
+          ))
+        }
+      </dl>
     </section>
   </div>
 </BaseLayout>

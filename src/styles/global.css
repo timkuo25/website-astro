@@ -8,7 +8,7 @@
 }
 
 :root.dark {
-  --background: #0a0a0a;
+  --background: #0d1017;
   --foreground: #e5e7eb;
 }
 
@@ -407,4 +407,9 @@ body {
 .dark .hljs-deletion {
   color: #ffdcd7;
   background-color: #67060c;
+}
+
+/* Dim white-background images so they don't glare against the dark page. */
+.dark .prose img {
+  filter: brightness(0.85);
 }

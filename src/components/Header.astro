@@ -15,7 +15,7 @@ interface Props {
 const { homeHref, homeLabel = 'Home', links, hasMobileNav = false } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 bg-white border-b border-blue-50 dark:bg-gray-950 dark:border-gray-800">
+<header class="sticky top-0 z-50 bg-white border-b border-blue-50 dark:bg-background dark:border-gray-800">
   <nav class="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
     <a
       href={homeHref}
@@ -57,7 +57,7 @@ const { homeHref, homeLabel = 'Home', links, hasMobileNav = false } = Astro.prop
   <div
     id="mobile-menu"
     hidden
-    class="sm:hidden absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] overflow-y-auto bg-white border-b border-blue-50 shadow-sm dark:bg-gray-950 dark:border-gray-800"
+    class="sm:hidden absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] overflow-y-auto bg-white border-b border-blue-50 shadow-sm dark:bg-background dark:border-gray-800"
   >
     <div class="px-4 py-3 text-sm">
       <div class="flex justify-end empty:hidden pb-3 border-b border-gray-100 dark:border-gray-800"><LanguageSwitcher /></div>

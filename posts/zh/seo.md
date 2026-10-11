@@ -24,9 +24,9 @@ tags: ["SEO", "SEM", "Keyword Research", "Customer Acquisition", "Influencer Mar
 
 ## 搜尋引擎
 
-軟體產業與技術的迭代與演進，往往都是由科技大廠所主導、推動的。幾十年前應該就是 IBM、Oracle、Microsoft，到近一點的 Facebook、Apple、Amazon、Google 這些公司。到現在 OpenAI、Anthropic 等公司開啟 LLM 與 AI Agent 時代，Google 推出[自家的模型](https://blog.google/technology/ai/google-gemini-ai/)，Microsoft 也[投資 OpenAI](https://blogs.microsoft.com/blog/2023/01/23/microsoftandopenaiextendpartnership/) 推出 [Copilot](https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/) 加入戰局
+軟體產業與技術的迭代與演進，往往都是由科技大廠所主導、推動的。幾十年前應該就是 IBM、Oracle、Microsoft，到近一點的 Facebook、Apple、Amazon、Google 這些公司。到現在 OpenAI、Anthropic 等公司開啟 LLM 與 AI Agent 時代，Google 推出[自家的模型](https://blog.google/technology/ai/google-gemini-ai/)，Microsoft 也[投資 OpenAI](https://blogs.microsoft.com/blog/2023/01/23/microsoftandopenaiextendpartnership/)推出[Copilot](https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/) 加入戰局
 
-早期的搜尋引擎對使用者較不友善，如果沒有投廣告或經過[人工審核](https://en.wikipedia.org/wiki/Yahoo!_Directory)，使用者幾乎找不到自己需要的頁面。Google 推出的搜尋引擎用 **[PageRank](https://research.google/pubs/the-anatomy-of-a-large-scale-hypertextual-web-search-engine/)** 找出網頁間的引用關係進行排名，使使用者能找搜尋到對自己真正有用的資源。隨後他們推出 Google AdWords（後來的 Google Ads）綁定搜尋引擎，再使用者下關鍵字的同時推給他們廣告，也成了 Google 主要的商業模式。這套方法的成功，催生了 Google 如今的軟體帝國，以及當年各大競爭者與學術單位對 Information Retrieval 的研究。時至今日，Google 仍是搜尋引擎的王者，舉凡 Yahoo!、Bing、DuckDuckGo（百度有它自己的玩法不算...）都沒有它的規模，當我們談 SEO 時，幾乎也都是按著 Google 的框架與規則來
+早期的搜尋引擎對使用者較不友善，如果沒有投廣告或經過[人工審核](https://en.wikipedia.org/wiki/Yahoo!_Directory)，使用者幾乎找不到自己需要的頁面。Google 推出的搜尋引擎用 **[PageRank](https://research.google/pubs/the-anatomy-of-a-large-scale-hypertextual-web-search-engine/)** 找出網頁間的引用關係進行排名，使使用者能搜尋到對自己真正有用的資源。隨後他們推出 Google AdWords（後來的 Google Ads）綁定搜尋引擎，在使用者下關鍵字的同時推給他們廣告，也成了 Google 主要的商業模式。這套方法的成功，催生了 Google 如今的軟體帝國，以及當年各大競爭者與學術單位對 Information Retrieval 的研究。時至今日，Google 仍是搜尋引擎的王者，舉凡 Yahoo!、Bing、DuckDuckGo（百度有它自己的玩法不算...）都沒有它的規模，當我們談 SEO 時，幾乎也都是按著 Google 的框架與規則來
 
 
 | | Google | Bing | Yahoo! |
@@ -36,9 +36,9 @@ tags: ["SEO", "SEM", "Keyword Research", "Customer Acquisition", "Influencer Mar
 | 商業模式 | 依使用者行為投放的搜尋廣告，廣告佔母公司 Alphabet 營收大部分 | 搜尋廣告（Microsoft Advertising），對 Microsoft 來說是 Azure、Office 之外的[副業](https://www.microsoft.com/investor/reports/ar25/index.html) | 新聞、財經、信箱等入口網站的廣告；搜尋廣告自 2009 年起[與 Microsoft 合作](https://techcrunch.com/2009/07/29/microsoft-yahoo-search-deal-the-official-press-release/) |
 | AI 整合 | [AI Overviews 與 AI Mode](https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q4-2025/)（Gemini） | [Copilot](https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/)（OpenAI 模型） | [Yahoo Scout](https://techxplore.com/news/2026-03-yahoo-ai-powered-scout-roots.html)（Anthropic 的 Claude） |
 
-## 誰需要 / 不需要 SEO
+## 誰需要/不需要 廣告/SEO
 
-廣告是一種用規模化的方式，向特定對象**傳遞資訊**、**塑造認知**、**引發行動**的商業活動。只要你想賣東西幾乎都會需要廣告。除非你自己已經很有口碑或很有名、或是你是不需要宣傳的獨佔事業（台電、中油）。所以問題通常不是「要不要廣告」，而是「要哪一種廣告」，而答案取決於**客戶平常是怎麼發現新東西的**
+[廣告](https://zh.wikipedia.org/zh-tw/%E5%BB%A3%E5%91%8A)是一種用規模化的方式，向特定對象**傳遞資訊**、**塑造認知**、**引發行動**的商業活動。只要你想賣東西幾乎都會需要廣告。除非你自己已經很有口碑或很有名、或是你是不需要宣傳的獨佔事業（台電、中油）。所以問題通常不是「要不要廣告」，而是「要哪一種廣告」，而答案取決於**客戶平常是怎麼發現新東西的**
 
 ### SEO
 

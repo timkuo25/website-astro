@@ -34,9 +34,9 @@ Google などの検索エンジン開発者にとって、[SEO（Search Engine O
 | ビジネスモデル | ユーザーの行動に基づく検索広告。広告が親会社 Alphabet の売上の大半を占める | 検索広告（Microsoft Advertising）。Microsoft にとっては Azure や Office に次ぐ[副業](https://www.microsoft.com/investor/reports/ar25/index.html) | ニュース、ファイナンス、メールなどポータルサイトの広告。検索広告は 2009 年から [Microsoft と提携](https://techcrunch.com/2009/07/29/microsoft-yahoo-search-deal-the-official-press-release/) |
 | AI との統合 | [AI Overviews と AI Mode](https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q4-2025/)（Gemini） | [Copilot](https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/)（OpenAI のモデル） | [Yahoo Scout](https://techxplore.com/news/2026-03-yahoo-ai-powered-scout-roots.html)（Anthropic の Claude） |
 
-## SEO が必要な人・不要な人
+## 広告・SEO が必要な人・不要な人
 
-広告とは、特定の対象に対して大規模に**情報を伝え**、**認知を形成し**、**行動を促す**商業活動です。何かを売りたいなら、ほぼ必ず広告が必要になります。例外は、すでに評判が高い・有名である場合や、宣伝のいらない独占事業（電力会社など）くらいでしょう。つまり問題は「広告を出すかどうか」ではなく「どの広告を使うか」で、その答えは**顧客がふだんどうやって新しいものを見つけているか**で決まります。
+[広告](https://ja.wikipedia.org/wiki/%E5%BA%83%E5%91%8A)とは、特定の対象に対して大規模に**情報を伝え**、**認知を形成し**、**行動を促す**商業活動です。何かを売りたいなら、ほぼ必ず広告が必要になります。例外は、すでに評判が高い・有名である場合や、宣伝のいらない独占事業（電力会社など）くらいでしょう。つまり問題は「広告を出すかどうか」ではなく「どの広告を使うか」で、その答えは**顧客がふだんどうやって新しいものを見つけているか**で決まります。
 
 ### SEO
 
