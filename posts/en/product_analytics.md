@@ -1,7 +1,7 @@
 ---
 title: "What Data Should a Product Track"
 date: "2025-04-21"
-excerpt: "知己知彼"
+excerpt: "Know yourself, know your users"
 sections: ["tech"]
 categories: ["martech"]
 tags: ["GA4", "GTM", "CDP", "AARRR"]

@@ -15,7 +15,7 @@ interface Props {
 const { homeHref, homeLabel = 'Home', links, hasMobileNav = false } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 bg-white border-b border-blue-50 dark:bg-background dark:border-gray-800">
+<header class="print:hidden sticky top-0 z-50 bg-white border-b border-blue-50 dark:bg-background dark:border-gray-800">
   <nav class="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
     <a
       href={homeHref}

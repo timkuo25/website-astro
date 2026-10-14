@@ -1,118 +1,229 @@
 ---
+import { Mail } from '@lucide/astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import GithubIcon from '../../components/GithubIcon.astro';
 
 
-const experience = [
+type Experience = {
+  org: string;
+  url?: string;
+  role: string;
+  period: string;
+  projects: { name?: string; points: string[] }[];
+};
+
+const experience: Experience[] = [
   {
     org: 'Perfect Corp.',
+    url: 'https://www.perfectcorp.com',
     role: 'Frontend Engineer',
     period: 'Mar 2025 – Present',
     projects: [
       {
-        name: 'B2B – AI/AR Beauty Tech Solutions',
+        name: 'B2C – AI Music & Music Video Generation App',
         points: [
-          'Developed React-based virtual try-on UIs for 30+ enterprise clients, integrating an in-house AI/AR SDK for makeup and skincare on photos and live video.',
-          'Resolved 350+ production issues across client integrations in 14 months, including cross-device camera and VTO rendering bugs and module lifecycle issues blocking client launches.',
-          "Customized a generic SDK baseline into brand-specific experiences from Figma designs, handling contract-based module access, market-specific i18n, tailored user flows, per-brand responsive specs, custom Countly events, and user consent requirements.",
+          'Owned the music video flow from day one, from storyboard editing to generation and results, shipping it in 10 languages **within 1.5 months** using Next.js, TypeScript and Tailwind CSS.',
+          '**Turned AI-built prototypes into production code** with Claude Code, and used it across the cycle to implement specs, write tests and fix bug tickets.',
+          'Validated photo and audio uploads in the browser, enforcing the single-face rule with MediaPipe and backend length limits with an audio trimming flow.',
+          'Corrected flow and UI errors in the product spec, and fixed the Countly and GA4 tracking specs against the real user flow while implementing them.',
+          'Fixed a TanStack Query bug that left finished jobs polling the server forever, and added regression tests to prevent it from returning.',
         ],
       },
       {
-        name: 'B2C – AI Image & Video Generator Platform',
+        name: 'B2B – AI/AR Beauty Tech Solutions',
         points: [
-          'Led the project by designing and building the frontend architecture from scratch using Next.js, delivering 20+ responsive AI tools and streamlining state management with Redux Toolkit.',
-          'Developed a reusable Canvas-based editor to accelerate AI tool development across 10+ applications.',
-          'Optimized face detection for photo editing applications using Web Workers, preventing UI blocking.',
-          'Designed standardized cross-page data schemas in collaboration with the team, minimizing redundant development effort and streamlining product iterations.',
-          'Engineered a polling-based async workflow for long-running AI video generation tasks, enabling non-blocking UX with progress tracking and completion notifications.',
-          'Constructed scalable product experiences by creating robust Strapi-powered CMS landing pages.',
-          'Improved organic search visibility by implementing SEO optimizations including metadata and JSON-LD structured data, contributing to a 20% increase in platform revenue within one month.',
-          'Integrated GA event tracking to measure user behavior and conversion funnels, enabling the product team to make informed, data-driven decisions.',
-          'Enabled global payment support for a 13-language platform by integrating 2Checkout payment flows.',
+          'Delivered React virtual try-on and skin analysis UIs to **30+ global beauty brands**, integrating an in-house AI/AR SDK on photos and live video.',
+          "Extended the SDK's client-facing API with init parameters and events for consent, recommendations and detection results, and documented them for client developers.",
+          'Customized and localized brand experiences for **up to 15 markets per brand**, including survey, skin report and product routine pages for a skincare analysis flow.',
+          'Implemented consent and privacy flows for client markets, including BIPA biometric consent and cookie-based analytics opt-out.',
+          'Resolved 300+ client bug tickets in 14 months, **tripling monthly throughput (18 → 54)** after building a Claude Code + n8n pipeline that triages bugs and auto-fixes simple UI issues for my review.',
+        ],
+      },
+    ],
+  },
+];
+
+const otherExperience: Experience[] = [
+  {
+    org: 'National Taiwan University',
+    role: 'Teaching Assistant',
+    period: 'Sep 2020 – Jun 2023',
+    projects: [
+      {
+        points: [
+          'Led **4–5 person TA teams** for Programming Design (C++) and Operations Research, designing test cases and grading programming assignments.',
+          'Ran weekly review sessions and office hours for Programming for Business Computing (Python), serving **800+ students per term** across three semesters.',
         ],
       },
     ],
   },
   {
-    org: 'Abacus Inc.',
-    role: 'Software Engineer Intern',
-    projects: [],
+    org: 'National Taiwan University',
+    role: 'Graduate Research Assistant (Industry–Academia Project)',
+    period: 'Sep 2021 – Jun 2022',
+    projects: [
+      {
+        points: [
+          "Built and deployed a real-time anomaly alerting system for an industry partner's light sensors, serving a pretrained ML model through a Flask and MongoDB backend on Google Cloud Platform, with alerts via the LINE Messaging API.",
+        ],
+      },
+    ],
   },
 ];
 
 const education = [
-  { org: 'National Taiwan University', degree: 'B.B.A. & M.B.A. in Information Management' },
+  {
+    org: 'National Taiwan University',
+    degree: 'MBA in Information Management (Operations Research)',
+    period: 'Sep 2021 – Jul 2024',
+    points: [
+      '**Thesis:** Integrated Multi-Product Production and Preventive Maintenance Planning in a Flow Shop System with Random Yield Rate Changes',
+      '**Exchange:** Nagoya University of Foreign Studies, Japan (Sep 2023 – Jul 2024)',
+    ],
+  },
+  {
+    org: 'National Taiwan University',
+    degree: 'BBA in Information Management',
+    period: 'Sep 2016 – Jun 2021',
+    points: [
+      '**Senior project:** Gesture Recognition for Remote Teaching with Google MediaPipe Hand Tracking',
+    ],
+  },
+];
+
+const languages = [
+  { name: 'Mandarin, Taiwanese', level: 'Native' },
+  { name: 'English', level: 'Professional (IELTS Academic 7.5)' },
+  { name: 'Japanese', level: 'Professional (JLPT N1)' },
 ];
 
 const skills = [
+  { group: 'Programming Languages', items: ['TypeScript', 'JavaScript', 'Python', 'C++'] },
   {
-    group: 'Frontend Architecture',
-    items: ['React', 'Next.js', 'Redux', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Fabric.js', 'Canvas API', 'Web Workers'],
+    group: 'Frontend',
+    items: [
+      'React',
+      'Next.js',
+      'Tailwind CSS',
+      'TanStack Query',
+      'Zustand',
+      'Zod',
+      'i18n (next-intl)',
+      'Accessibility (a11y)',
+      'Canvas API',
+      'MediaPipe',
+    ],
   },
-  { group: 'Web Standards & Tools', items: ['Headless CMS', 'Internationalization (i18n)'] },
+  { group: 'AI Tooling', items: ['Claude Code', 'GitHub Copilot', 'n8n', 'MCP'] },
   {
-    group: 'Data Engineering & Backend',
-    items: ['Apache Kafka', 'KSQL', 'Kafka Connect', 'Python', 'SQL', 'ETL Pipelines'],
-  },
-  {
-    group: 'Cloud & MarTech',
-    items: ['AWS EC2 & S3', 'Docker', 'SEO Optimization', 'JSON-LD', 'Google Analytics (GA4)', 'GTM', 'Countly'],
+    group: 'Tools',
+    items: ['Git', 'Figma', 'Vitest', 'React Testing Library', 'Playwright', 'Google Analytics (GA4)', 'GTM', 'Countly'],
   },
 ];
 
-const heading = 'text-xs font-semibold uppercase tracking-widest text-blue-400 mb-6 dark:text-blue-300';
+// Splits on **bold** markers; odd indexes are the highlighted parts.
+const highlight = (text: string) => text.split(/\*\*(.+?)\*\*/g);
+
+const experienceSections = [
+  { title: 'Work Experience', items: experience, compact: false },
+  { title: 'Other Experience', items: otherExperience, compact: true },
+];
+
+const contactLink = 'text-black hover:text-blue-500 transition-colors dark:text-gray-100 dark:hover:text-blue-400';
+
+const divider = 'mx-2 text-gray-300 dark:text-gray-600';
+const orgClass = 'text-gray-500 dark:text-gray-400';
+
+const heading = 'text-sm font-semibold uppercase tracking-widest text-blue-400 mb-6 dark:text-blue-300';
 ---
 
 <BaseLayout section="tech" title="Resume" description="Chung-Chia Kuo's work and education history">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16 print:p-0 resume">
     <section>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-black dark:text-gray-100">Chung-Chia Kuo</h1>
-      <p class="mt-3 text-gray-500 dark:text-gray-400">Frontend Engineer</p>
-      <p class="mt-2 text-sm text-gray-400 dark:text-gray-500">📍 Taipei, Taiwan</p>
-      <p class="mt-6 text-gray-700 leading-relaxed dark:text-gray-300">
-        Frontend Engineer building AI/AR web products, from virtual try-on experiences for 30+ global beauty brands to a
-        new AI music and video generation product. Beyond the frontend, I explore topics such as the web, algorithms, and
-        AI. I share my research notes on my{' '}
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-black dark:text-gray-100">Chung-Chia Kuo</h1>
+      <p class="mt-3 text-lg text-gray-500 dark:text-gray-400">Frontend Engineer</p>
+      <p class="mt-2 text-base text-gray-400 dark:text-gray-500">📍 Taipei, Taiwan</p>
+      <p class="mt-6 text-lg text-gray-700 leading-relaxed dark:text-gray-300">
+        Frontend engineer with 1.5+ years of experience building AI/AR web products, from virtual try-on UIs for 30+ global
+        beauty brands to an AI music video app built from scratch and shipped in 1.5 months. AI agents are part of my
+        daily workflow, from turning prototypes into production code to automating bug fixes. More on the web,
+        algorithms and AI on my{' '}
         <a href="/tech/blog/en" class="text-blue-500 hover:underline dark:text-blue-400">technical blog</a>.
       </p>
-    </section>
-
-    <section>
-      <h2 class={heading}>Work Experience</h2>
-      <div class="space-y-10">
-        {
-          experience.map(({ org, role, period, projects }) => (
-            <div>
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                <div>
-                  <p class="font-semibold text-gray-900 dark:text-gray-100">{org}</p>
-                  <p class="text-sm text-gray-500 mt-0.5 dark:text-gray-400">{role}</p>
-                </div>
-                {period && <p class="text-sm text-gray-400 shrink-0 dark:text-gray-500">{period}</p>}
-              </div>
-              {projects.map(({ name, points }) => (
-                <div class="mt-6">
-                  <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200">{name}</h3>
-                  <ul class="mt-2 list-disc pl-5 space-y-1.5 text-sm text-gray-600 leading-relaxed dark:text-gray-400">
-                    {points.map((point) => (
-                      <li>{point}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          ))
-        }
+      <div class="mt-5 flex items-center gap-4">
+        <a href="mailto:timkuo860930@gmail.com" class={contactLink} aria-label="Email">
+          <Mail size={20} class="print:hidden" />
+          <span class="hidden print:inline">timkuo860930@gmail.com</span>
+        </a>
+        <a href="https://github.com/timkuo25" target="_blank" rel="noopener noreferrer" class={contactLink} aria-label="GitHub">
+          <span class="print:hidden"><GithubIcon size={20} /></span>
+          <span class="hidden print:inline">github.com/timkuo25</span>
+        </a>
       </div>
     </section>
+
+    {
+      experienceSections.map(({ title, items, compact }) => (
+        <section>
+          <h2 class={heading}>{title}</h2>
+          <div class={compact ? 'space-y-8' : 'space-y-10'}>
+            {
+              items.map(({ org, url, role, period, projects }) => (
+                <div class="entry">
+                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                    <p class={compact ? 'text-lg' : 'text-xl'}>
+                      <span class="font-semibold text-gray-900 dark:text-gray-100">{role}</span>
+                      <span class={divider}>|</span>
+                      {url ? (
+                        <a href={url} target="_blank" rel="noopener noreferrer" class={`${orgClass} inline-flex items-center gap-1 hover:text-blue-500 dark:hover:text-blue-400`}>
+                          {org}
+                          <svg class="w-4 h-4 print:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M14 4h6v6M10 14 20 4M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </a>
+                      ) : (
+                        <span class={orgClass}>{org}</span>
+                      )}
+                    </p>
+                    <p class={`${compact ? 'text-base' : 'text-lg'} text-gray-400 shrink-0 dark:text-gray-500`}>{period}</p>
+                  </div>
+                  {projects.map(({ name, points }) => (
+                    <div class={name ? 'mt-6' : 'mt-3'}>
+                      {name && <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{name}</h3>}
+                      <ul class={`${name ? 'mt-3' : ''} list-disc pl-5 ${compact ? 'space-y-1.5 text-base' : 'space-y-2.5 text-lg'} text-gray-600 leading-relaxed dark:text-gray-400`}>
+                        {points.map((point) => (
+                          <li>{highlight(point).map((part, i) => (i % 2 ? <strong class="font-semibold text-gray-900 dark:text-gray-100">{part}</strong> : part))}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ))
+            }
+          </div>
+        </section>
+      ))
+    }
 
     <section>
       <h2 class={heading}>Education</h2>
       <div class="space-y-6">
         {
-          education.map(({ org, degree }) => (
-            <div>
-              <p class="font-semibold text-gray-900 dark:text-gray-100">{org}</p>
-              <p class="text-sm text-gray-500 mt-0.5 dark:text-gray-400">{degree}</p>
+          education.map(({ org, degree, period, points }) => (
+            <div class="entry">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                <p class="text-lg">
+                  <span class="font-semibold text-gray-900 dark:text-gray-100">{degree}</span>
+                  <span class={divider}>|</span>
+                  <span class={orgClass}>{org}</span>
+                </p>
+                <p class="text-base text-gray-400 shrink-0 dark:text-gray-500">{period}</p>
+              </div>
+              <ul class="mt-3 ml-1 border-l-2 border-gray-200 pl-4 space-y-1.5 text-base text-gray-600 leading-relaxed dark:border-gray-700 dark:text-gray-400">
+                {points.map((point) => (
+                  <li>{highlight(point).map((part, i) => (i % 2 ? <strong class="font-semibold text-gray-900 dark:text-gray-100">{part}</strong> : part))}</li>
+                ))}
+              </ul>
             </div>
           ))
         }
@@ -125,12 +236,104 @@ const heading = 'text-xs font-semibold uppercase tracking-widest text-blue-400 m
         {
           skills.map(({ group, items }) => (
             <div>
-              <dt class="text-sm font-semibold text-gray-800 dark:text-gray-200">{group}</dt>
-              <dd class="mt-1 text-sm text-gray-600 dark:text-gray-400">{items.join(' · ')}</dd>
+              <dt class="text-base font-semibold text-gray-800 dark:text-gray-200">{group}</dt>
+              <dd class="mt-1 text-base text-gray-600 dark:text-gray-400">{items.join(' · ')}</dd>
             </div>
           ))
         }
       </dl>
     </section>
+
+    <section>
+      <h2 class={heading}>Languages</h2>
+      <ul class="space-y-2 text-base text-gray-600 dark:text-gray-400">
+        {
+          languages.map(({ name, level }) => (
+            <li>
+              <span class="font-semibold text-gray-800 dark:text-gray-200">{name}</span>
+              <span class={divider}>—</span>
+              {level}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </div>
 </BaseLayout>
+
+<style is:global>
+  /* Print / PDF layout: a compact, light version of the page. Tailwind sizes are rem-based,
+     so shrinking the root scales everything; the rest tightens spacing that suits a screen
+     but wastes paper. */
+  @media print {
+    html {
+      font-size: 11.5px;
+    }
+    .resume li,
+    .resume h1 ~ p.leading-relaxed {
+      line-height: 1.45;
+    }
+    .resume h1 ~ div {
+      display: block;
+      margin-top: 0.4rem;
+    }
+    .resume h1 ~ div a {
+      margin-right: 1.5rem;
+    }
+    /* Tailwind's space-y-* sets margin-bottom; clear it so the margins below are the only spacing. */
+    .resume > *,
+    .resume section > div > *,
+    .resume li,
+    .resume dl > div {
+      margin-bottom: 0 !important;
+    }
+    .resume > * + * {
+      margin-top: 1.4rem !important;
+    }
+    .resume h1 {
+      font-size: 2.4rem;
+      line-height: 1.1;
+    }
+    .resume h1 ~ p {
+      margin-top: 0.3rem;
+    }
+    .resume h1 ~ p.leading-relaxed {
+      margin-top: 0.8rem;
+    }
+    .resume h2 {
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid #d1d5db;
+      color: #1d4ed8;
+    }
+    .resume section > div > * + * {
+      margin-top: 1rem !important;
+    }
+    .resume .entry {
+      break-inside: avoid;
+    }
+    .resume .entry > div + div {
+      margin-top: 0.6rem;
+    }
+    .resume .entry h3 + ul,
+    .resume .entry > ul {
+      margin-top: 0.3rem;
+    }
+    .resume li + li {
+      margin-top: 0.2rem !important;
+    }
+    .resume dl > div {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .resume dl > div + div {
+      margin-top: 0.25rem !important;
+    }
+    .resume dd {
+      margin-top: 0;
+    }
+    .resume h2 + ul > li + li {
+      margin-top: 0.15rem !important;
+    }
+  }
+</style>

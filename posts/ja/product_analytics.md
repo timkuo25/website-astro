@@ -1,7 +1,7 @@
 ---
 title: "プロダクトはどんなデータを追跡すべきか"
 date: "2025-04-21"
-excerpt: "知己知彼"
+excerpt: "彼を知り己を知れば"
 sections: ["tech"]
 categories: ["martech"]
 tags: ["GA4", "GTM", "CDP", "AARRR"]

@@ -1,5 +1,12 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
+/* Dark mode applies on screen only, so printing (e.g. the resume to PDF) is always light. */
+@custom-variant dark {
+  @media screen {
+    &:where(.dark, .dark *) {
+      @slot;
+    }
+  }
+}
 
 :root {
   --background: #ffffff;
@@ -8,8 +15,14 @@
 }
 
 :root.dark {
-  --background: #0d1017;
-  --foreground: #e5e7eb;
+  @media screen {
+    --background: #0d1017;
+    --foreground: #e5e7eb;
+  }
+}
+
+@page {
+  margin: 14mm 12mm;
 }
 
 @theme inline {
