@@ -2,6 +2,7 @@
 import { Mail } from '@lucide/astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GithubIcon from '../../components/GithubIcon.astro';
+import LinkedinIcon from '../../components/LinkedinIcon.astro';
 
 
 type Experience = {
@@ -105,13 +106,10 @@ const skills = [
       'React',
       'Next.js',
       'Tailwind CSS',
-      'TanStack Query',
       'Zustand',
-      'Zod',
       'i18n (next-intl)',
       'Accessibility (a11y)',
       'Canvas API',
-      'MediaPipe',
     ],
   },
   { group: 'AI Tooling', items: ['Claude Code', 'GitHub Copilot', 'n8n', 'MCP'] },
@@ -158,6 +156,10 @@ const heading = 'text-sm font-semibold uppercase tracking-widest text-blue-400 m
         <a href="https://github.com/timkuo25" target="_blank" rel="noopener noreferrer" class={contactLink} aria-label="GitHub">
           <span class="print:hidden"><GithubIcon size={20} /></span>
           <span class="hidden print:inline">github.com/timkuo25</span>
+        </a>
+        <a href="https://www.linkedin.com/in/chung-chia-kuo-7955a4195/" target="_blank" rel="noopener noreferrer" class={contactLink} aria-label="LinkedIn">
+          <span class="print:hidden"><LinkedinIcon size={20} /></span>
+          <span class="hidden print:inline">linkedin.com/in/chung-chia-kuo-7955a4195</span>
         </a>
       </div>
     </section>

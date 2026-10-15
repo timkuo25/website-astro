@@ -2,6 +2,7 @@
 import { Mail } from '@lucide/astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GithubIcon from '../../components/GithubIcon.astro';
+import LinkedinIcon from '../../components/LinkedinIcon.astro';
 ---
 
 <BaseLayout section="tech" description="Chung-Chia (Tim) Kuo's technical blog and resume">
@@ -25,6 +26,15 @@ import GithubIcon from '../../components/GithubIcon.astro';
           aria-label="GitHub"
         >
           <GithubIcon size={20} />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/chung-chia-kuo-7955a4195/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-black hover:text-blue-500 transition-colors dark:text-gray-100 dark:hover:text-blue-400"
+          aria-label="LinkedIn"
+        >
+          <LinkedinIcon size={20} />
         </a>
       </div>
     </section>

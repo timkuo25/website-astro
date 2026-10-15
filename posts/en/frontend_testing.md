@@ -1,7 +1,7 @@
 ---
 title: "How Frontend Testing Is Actually Done"
 date: "2025-03-21"
-excerpt: "Test Driven Developing (is dead?)"
+excerpt: "Test Driven Development (is dead?)"
 sections: ["tech"]
 categories: ["web"]
 tags: ["Testing", "Vitest", "Playwright", "CI/CD"]
