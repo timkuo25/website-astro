@@ -4,6 +4,7 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
 import Header from '../components/Header.astro';
+import CodeCopy from '../components/CodeCopy.astro';
 
 interface Props {
   title?: string;
@@ -79,5 +80,6 @@ const header =
         © {new Date().getFullYear()} TCK
       </div>
     </footer>
+    <CodeCopy />
   </body>
 </html>

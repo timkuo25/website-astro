@@ -226,6 +226,104 @@ body {
   background: transparent;
 }
 
+/* Thin, rounded horizontal scrollbar for code blocks. Chrome and Safari use
+   the ::-webkit-scrollbar rules; Chromium ignores them once scrollbar-color is
+   set, so the standard properties are limited to browsers without them
+   (Firefox). */
+.prose pre {
+  --scrollbar-thumb: #d1d5db;
+  --scrollbar-thumb-hover: #9ca3af;
+}
+
+.dark .prose pre {
+  --scrollbar-thumb: #30363d;
+  --scrollbar-thumb-hover: #484f58;
+}
+
+.prose pre::-webkit-scrollbar {
+  height: 10px;
+}
+
+.prose pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border: 3px solid transparent;
+  border-radius: 9999px;
+  background-clip: padding-box;
+}
+
+.prose pre::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .prose pre {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+}
+
+/* Copy button injected by CodeCopy.astro */
+.prose .code-block {
+  position: relative;
+}
+
+.prose .code-copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #6b7280;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.prose .code-block:hover .code-copy,
+.prose .code-copy:focus-visible,
+.prose .code-copy[data-copied] {
+  opacity: 1;
+}
+
+.prose .code-copy:hover {
+  color: #111827;
+}
+
+.prose .code-copy[data-copied] {
+  color: #16a34a;
+}
+
+/* No hover on touch screens, so keep the button visible there. */
+@media (hover: none) {
+  .prose .code-copy {
+    opacity: 1;
+  }
+}
+
+.dark .prose .code-copy {
+  border-color: #30363d;
+  background: #21262d;
+  color: #9ca3af;
+}
+
+.dark .prose .code-copy:hover {
+  color: #f3f4f6;
+}
+
+.dark .prose .code-copy[data-copied] {
+  color: #4ade80;
+}
+
 .dark .prose thead {
   background: #1f2937;
 }

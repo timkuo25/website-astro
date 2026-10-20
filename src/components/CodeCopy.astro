@@ -1,0 +1,51 @@
+---
+// Adds a copy button to every code block in post content. The markup comes
+// from Markdown, so the buttons are injected at runtime (styled in global.css).
+---
+
+<script>
+  const copyIcon =
+    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  const checkIcon =
+    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+  // Re-run on every page load, since client-side navigation swaps the
+  // article without re-running module scripts.
+  document.addEventListener('astro:page-load', () => {
+    for (const pre of document.querySelectorAll<HTMLPreElement>('.prose pre')) {
+      if (pre.parentElement?.classList.contains('code-block')) continue;
+
+      // Wrap the <pre> so the button stays put when the code scrolls sideways.
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block';
+      pre.replaceWith(wrapper);
+      wrapper.append(pre);
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'code-copy';
+      button.setAttribute('aria-label', 'Copy code');
+      button.innerHTML = copyIcon;
+      wrapper.append(button);
+
+      let reset = 0;
+      button.addEventListener('click', async () => {
+        const code = pre.querySelector('code') ?? pre;
+        try {
+          await navigator.clipboard.writeText(code.textContent ?? '');
+        } catch {
+          return;
+        }
+        button.innerHTML = checkIcon;
+        button.dataset.copied = '';
+        button.setAttribute('aria-label', 'Copied');
+        clearTimeout(reset);
+        reset = window.setTimeout(() => {
+          button.innerHTML = copyIcon;
+          delete button.dataset.copied;
+          button.setAttribute('aria-label', 'Copy code');
+        }, 2000);
+      });
+    }
+  });
+</script>
