@@ -27,7 +27,7 @@ Later, tags turned into loading a library first and letting the library decide w
 
 ![Two ways for the frontend to send data to GA4: GTM and gtag.js](https://res.cloudinary.com/dazoegq66/image/upload/v1792482271/gtm_datalayer/gtm_vs_gtag_to_ga4.png)
 
-You can also use **gtag.js**, but with it, tags end up scattered all over the codebase once the project grows. It also only serves Google's own products (GA4, Google Ads). That's why teams often choose GTM, which can send to multiple platforms.
+**gtag.js** is another option, but as a project grows, its tags end up scattered across the codebase. It also only works with Google's own products (GA4, Google Ads), so teams often go with GTM instead, which can send data to multiple platforms.
 
 ## GTM
 

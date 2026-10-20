@@ -27,7 +27,7 @@ GA4 は GTM がデータを送れる先のひとつにすぎず、Meta Pixel、G
 
 ![フロントエンドから GA4 にデータを送る 2 つの方法：GTM と gtag.js](https://res.cloudinary.com/dazoegq66/image/upload/v1792482271/gtm_datalayer/gtm_vs_gtag_to_ga4.png)
 
-**gtag.js** を使う選択肢もありますが、プロジェクトが大きくなるとタグがコードのあちこちに散らばってしまいます。さらに Google 自社のプロダクト（GA4、Google Ads）にしか対応していません。そのため、複数のプラットフォームに送れる GTM がよく選ばれます。
+**gtag.js** という選択肢もありますが、プロジェクトが大きくなるとタグがコードのあちこちに散らばりがちです。また、対応しているのは Google 自社のプロダクト（GA4、Google Ads）だけです。そのため、複数のプラットフォームにデータを送れる GTM が選ばれることが多いです。
 
 ## GTM
 
