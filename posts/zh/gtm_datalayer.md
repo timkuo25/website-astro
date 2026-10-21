@@ -27,7 +27,7 @@ GA4 是 GTM 可以送資料的對象之一，Meta Pixel、Google Ads、LinkedIn 
 
 ![前端送資料到 GA4 的兩種方式：GTM 與 gtag.js](https://res.cloudinary.com/dazoegq66/image/upload/v1792482271/gtm_datalayer/gtm_vs_gtag_to_ga4.png)
 
-也可以選擇用 **gtag.js**，只是那是個專案一大，tag 會分散在各處的方案。並且它只服務於 Google 自家產品（GA4、Google Ads）。因此常會選擇能送到多個平台的 GTM
+**gtag.js** 是一個選項，只是專案一大 tag 會分散在各處的方案。並且它只服務於 Google 自家產品（GA4、Google Ads）。因此常會選擇能送到多個平台的 GTM
 
 ## GTM
 
