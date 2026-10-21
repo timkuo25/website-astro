@@ -1,10 +1,10 @@
 ---
 title: "社會選擇理論與投票演算法"
 date: "2026-07-02"
-excerpt: "陶片放逐"
-sections: ["tech"]
+excerpt: "陶片放逐法"
+sections: ["tech", "general"]
 categories: ["ds-algo"]
-tags: ["Social Choice Theory", "", "Condorcet method"]
+tags: ["Social Choice Theory", "Condorcet method", "Voting System", "Median Voter Theorem"]
 ---
 
 ## 社會選擇理論（Social Choice Theory）
@@ -13,7 +13,7 @@ tags: ["Social Choice Theory", "", "Condorcet method"]
 
 用理論一點的方式講，就是要找到一個制度或演算法（函數 $F(X, P)$）
 
-**輸入**是選項 $X = \{A, B, C, D, \dots\}$跟個體的喜好 $P = (P_1, P_2, \dots, P_n)$
+輸入是選項 $X = \{A, B, C, D, \dots\}$ 跟個體的喜好 $P = (P_1, P_2, \dots, P_n)$
 
 $$
 \begin{aligned}
@@ -23,7 +23,7 @@ P_2 &= \{(C \succ A), (D \succ B), \dots\} \\
 \end{aligned}
 $$
 
-使**輸出**能「代表全體意志」
+使輸出能「代表全體意志」
 
 $$
 F^* = \arg\max_{F \in \mathcal{F}} G(F)
@@ -37,9 +37,9 @@ $$
 
 **全體意志存不存在**
 
-|              | 理論   | 現實   |
-| ------------ | ------ | ------ |
-| 2 個選項     | 存在   | 不存在 |
+|              | 理論       | 現實   |
+| ------------ | ---------- | ------ |
+| 2 個選項     | 存在       | 不存在 |
 | 3 個以上選項 | 不保證存在 | 不存在 |
 
 在往下討論之前，補充說明一下社會選擇理論雖然用的多是數學與經濟學的語言，但能延伸到幾乎所有涉及多人決策的議題，例如：
@@ -50,11 +50,12 @@ $$
 - 股東會：多人考慮公司決策、根據持有股份有不同權重
 - 推薦系統：根據使用者偏好與評分算出熱門影片排行榜
 
-## 兩個選項時：May's theorem
+## 兩個選項時：May's Theorem
 
 當選項只有兩個，跟你想的一樣，理論上的全體意志就是**多數決（Majority rule）**
 
-多數決滿足以下條件（May's Theorem）
+多數決滿足以下條件（May's Theorem）：
+
 1. Anonymity：每票等值
 2. Neutrality：制度對選項無偏見
 3. Positive responsiveness：如果大家投完後平手，此時只要有一個人改變心意支持 $A$，結果就必須變成 $A$ 勝出
@@ -65,10 +66,14 @@ $$
 
 ## 三個選項時：全體意志是個假議題
 
-只要是在台灣或民主國家長大，你大概都會覺得「只要人人投票，就能找出集體的意志、人民的智慧」，然而**阿羅不可能定理**證明只要選項有 3 個以上，滿足基本公平條件的排名投票制度就不存在**Gibbard-Satterthwaite 定理**證明只要選項有 3 個以上，任何制度都防不住大家說謊。這兩個定理戳破了大家對民主政治美好的想像，並告訴我們唯一正確的「全體意志」並不存在，任何集體決策都只是投票規則不同帶來的結果
+只要是在台灣或民主國家長大，你大概都會覺得「只要人人投票，就能找出集體的意志、人民的智慧」，然而有兩大經典定理擊碎了這種浪漫幻想
+
+1. **阿羅不可能定理**證明只要選項有 3 個以上，滿足基本公平條件的排名投票制度就不存在
+2. **Gibbard-Satterthwaite 定理**證明只要選項有 3 個以上，任何制度都防不住大家說謊
+
+這兩個定理戳破了大家對民主政治美好的想像，並告訴我們唯一正確的「全體意志」並不存在，任何集體決策都只是投票規則不同帶來的結果
 
 ![Source: https://whogovernstw.org/2014/05/20/fangyuchen1/](https://res.cloudinary.com/dazoegq66/image/upload/v1792568147/voting/electoral_systems_table.png)
-
 
 ### 怎樣的 function 可以代表全體意志？
 
@@ -88,7 +93,7 @@ $$
 | 小華 | B       | C       | D       | A       |
 | 小美 | A       | B       | C       | D       |
 
-#### 1. 效用最大化
+### 1. 效用最大化
 
 每個人對每個選項都有一個「效用」（喜歡的程度），一個制度選出來的結果帶給大家的效用總和越大，就越能代表全體意志
 
@@ -104,16 +109,16 @@ $$
 
 **Borda Count**：第 1 名給 3 分、第 2 名給 2 分、第 3 名給 1 分、第 4 名給 0 分
 
-|      | A   | B   | C   | D   |
-| ---- | --- | --- | --- | --- |
-| 小明 | 3   | 2   | 1   | 0   |
-| 小華 | 0   | 3   | 2   | 1   |
-| 小美 | 3   | 2   | 1   | 0   |
+|      | A   | B     | C   | D   |
+| ---- | --- | ----- | --- | --- |
+| 小明 | 3   | 2     | 1   | 0   |
+| 小華 | 0   | 3     | 2   | 1   |
+| 小美 | 3   | 2     | 1   | 0   |
 | 總分 | 6   | **7** | 4   | 1   |
 
 勝出的是 B，雖然有兩個人最喜歡 A，但 B 沒有被任何人排在後段，A 卻是小華的最後一名，可以說 B 是比較「大家都能接受」的選項
 
-#### 2. 多數標準
+### 2. 多數標準
 
 **相對多數決（Plurality）** 這次每個人只能投一票，得票最多的勝出，也就是大部分選舉用的方式
 
@@ -137,18 +142,18 @@ A 拿 4 票最多所以勝出，但其他 5 個人都把 A 排在最後一名
 
 相對多數決跟多輪投票制都符合多數標準，但在這個例子裡沒有人過半（A 只有 4/9），多數標準沒有要求，兩個制度就選出不同的結果，可見光靠多數標準還不足以決定全體意志
 
-#### 3. 否決制
+### 3. 否決制
 
 只要有一個人否決，選項就會被拿掉，以我們的例子來說 A 就不會當選。這是個破壞 Neutrality 與效率的做法，傾向維持現狀
 
 最有名的應該是聯合國安理會的[五常否決權](https://www.cna.com.tw/news/aopl/202204260140.aspx)
 
-#### 4. 孔多塞標準
+### 4. 孔多塞標準
 
 [孔多塞](https://zh.wikipedia.org/zh-tw/%E5%B0%BC%E5%8F%A4%E6%8B%89%C2%B7%E5%BE%B7%C2%B7%E5%AD%94%E5%A4%9A%E5%A1%9E)**讓每個選項兩兩對決**，如果有一個選項跟其他任何選項一對一都能贏（孔多塞贏家），它就是全體意志，制度就必須選它
 
-| 對決   | 結果   |
-| ------ | -------- |
+| 對決   | 結果        |
+| ------ | ----------- |
 | A vs B | A 以 2:1 勝 |
 | A vs C | A 以 2:1 勝 |
 | A vs D | A 以 2:1 勝 |
@@ -157,13 +162,14 @@ A 是孔多塞贏家，跟相對多數決的結果一樣，但跟 Borda 不同�
 
 但應該也有人想到了，萬一大家的偏好像剪刀石頭布一樣，剪刀贏布、布贏石頭、石頭又贏剪刀，孔多塞標準就不適用了。這就是[孔多塞悖論](https://zh.wikipedia.org/wiki/%E6%8A%95%E7%A5%A8%E6%82%96%E8%AE%BA)：集體傾向可以是循環性的，即使個人的傾向不是
 
-#### 5. Dodgson's method
+### 5. Dodgson's method
 
 Dodgson 有另外一個較為人所知的名字叫 [Lewis Carroll](https://en.wikipedia.org/wiki/Lewis_Carroll)，就是寫愛麗絲夢遊仙境那個人
 
 [他提出](https://en.wikipedia.org/wiki/Dodgson%27s_method#:~:text=Given%20an%20integer%20k%20and%20an%20election%2C,Condorcet%20winner%20with%20fewer%20than%20k%20swaps.)如果遇到孔多塞悖論，就計算每個選項「需要把相鄰的偏好排序對調幾次，才能讓自己成為孔多塞贏家」，次數最少的那個人勝出。算出最少的步數與贏家[是個 NP-hard 問題](https://www.jstor.org/stable/41105913)
 
-#### 整理
+![《愛麗絲夢遊仙境》，作者 Lewis Carroll](https://res.cloudinary.com/dazoegq66/image/upload/v1792598657/voting/alice_in_wonderland_cover.png)
+
 
 | 規則 | 運作方式 | 優點 | 缺點 |
 | ---- | -------- | ---- | ---- |
@@ -176,7 +182,8 @@ Dodgson 有另外一個較為人所知的名字叫 [Lewis Carroll](https://en.wi
 
 ### 阿羅不可能定理
 
-阿羅（Kenneth Arrow）證明了當候選人超過 3 個時，不存在任何一個投票制度能同時滿足以下 4 個條件：
+阿羅（Kenneth Arrow）證明了當候選人 3 個以上時，不存在任何一個投票制度能同時滿足以下 4 個條件：
+
 - Non-Dictatorship：不能有任何一個人的喜好直接決定最終結果
 - Pareto Efficiency：如果所有人一致認為 $A > B$，那集體結果必須是 $A > B$
 - Independence of Irrelevant Alternatives：$A$ 和 $B$ 的相對排名，只取決於選民對 $A$ 和 $B$ 的偏好，不應該受到第三者 $C$ 出現或退選的干擾
@@ -186,15 +193,101 @@ Dodgson 有另外一個較為人所知的名字叫 [Lewis Carroll](https://en.wi
 
 阿羅不可能定理說明完美的公平在邏輯上是不存在的。所有集體做出的選擇，即使個人的偏好不變，在不同規則下就會出現不同結果，並且伴隨著一定的 trade-off
 
-## Manipulation、Strategyproof 與 2000 年臺灣總統大選
+## Manipulation、Strategyproof 與 2000 年台灣總統大選
 
-StrategyProof(SP) 的意思是投票者沒辦法透過不誠實（違反自己偏好）的選擇獲得較好的結果。研究制度怎麼設計的學者，夢寐以求的就是設計出一個 SP 的制度。然而 [Gibbard-Satterthwaite Theorem](https://fiveable.me/game-theory/key-terms/gibbard-satterthwaite-theorem) 證明了「當候選人有 3 個以上時，世界上不存在任何一個非獨裁，又滿足 SP 的投票系統」
+Strategyproof（SP）的意思是投票者沒辦法透過不誠實（違反自己偏好）的選擇獲得較好的結果。研究制度怎麼設計的學者，夢寐以求的就是設計出一個 SP 的制度。然而 [Gibbard-Satterthwaite Theorem](https://fiveable.me/game-theory/key-terms/gibbard-satterthwaite-theorem) 證明了「當候選人有 3 個以上時，世界上不存在任何一個非獨裁，又滿足 SP 的投票系統」
 
-Plurality 可以操作[棄保效應](https://zh.wikipedia.org/zh-tw/%E7%AD%96%E7%95%A5%E6%80%A7%E6%8A%95%E7%A5%A8)，Borda 就更不用說了，手上能給的選擇一多，能說謊的空間就更大。
+Plurality 可以操作[棄保效應](https://zh.wikipedia.org/zh-tw/%E7%AD%96%E7%95%A5%E6%80%A7%E6%8A%95%E7%A5%A8)，Borda 就更不用說了，手上能給的選擇一多，能說謊的空間就更大
 
 事實上 [Dodgson 本人就不喜歡 Borda 法與 Plurality](https://ora.ox.ac.uk/objects/uuid:6314baf4-1883-483b-ac4b-71c25f063769/files/rdb78td089)，而 Borda 自己也說「My scheme is intended only for honest men」
 
+來看一個 case。2000 年台灣總統大選，是中國國民黨連戰、民主進步黨陳水扁、無黨籍宋楚瑜的三腳督局面，最終得票率為陳水扁 39.3%、宋楚瑜 36.84%、連戰 23.1%，由陳水扁當選
 
+![2000 年陳水扁勝選](https://res.cloudinary.com/dazoegq66/image/upload/v1792598405/voting/election_2000_victory_rally.png)
+
+
+宋楚瑜身為台灣省長，原本上位呼聲極高，但李登輝與他切割之後他脫黨參選，國民黨則推出連戰參選。宋連二人屬於泛藍陣營，加起來有近 60% 的票，但這次分裂還是造成連宋相爭、阿扁得利的局面
+
+宋楚瑜在此次選舉很可能是孔多塞贏家（宋 vs 扁是宋贏、宋 vs 連也是宋贏），卻吃了 Plurality 的虧。既然 Plurality 沒有辦法推出一個孔多塞贏家，為什麼還要用？原因大概有以下幾個：
+
+1. 這次選舉其實有五個參選人（還有李敖跟許信良），用 Condorcet 法的話要排出五人排序，比較麻煩
+2. 除了比較麻煩以外，由於規則較複雜且不一目了然，一旦有心人士操作陰謀論，對社會秩序和信任會是一種傷害
+3. 即使候選人只有三組，也難保不會出現孔多塞悖論
+
+對於第 3 點，可能會有人說「那如果先跑一次 Condorcet 法，出現悖論的話再退回 Plurality 或 Borda 不行嗎？」
+
+這個想法有個名字叫做 [Black's Method](https://en.wikipedia.org/wiki/Black%27s_method)。然而這樣做依然行不通，因為泛綠陣營可以透過不誠實的投票使第一輪出現孔多塞悖論，硬是將投票拖到第二輪，這樣也選不出孔多塞贏家
+
+- 如果 2000 年採用 Black's Method：陳水扁陣營最有動機發動策略性投票（因為誠實投票必輸）
+- 如果綠營發動策略成功且退回 Plurality $\implies$ 陳水扁贏
+- 如果綠營發動策略但退回 Borda Count $\implies$ 連戰勝率較高，但 Borda 仍面臨被操弄的風險
+- 如果選民全部誠實投票 $\implies$ 宋楚瑜當選
+
+這種將幾種方式拼在一起誕生的新投票方式，依然逃不出阿羅不可能定理與 Gibbard-Satterthwaite 定理
+
+## 三個以上選項卻有全體意志的情況：Single-Peaked Preference
+
+如果選項之間有一個特定的空間結構，例如位置、大小、高低、光譜，且選民的偏好呈現「單峰偏好（Single-Peaked Preference）」，也就是每人**有一個最偏好的選項，距離此選項越遠偏好就遞減**，此時理論上的全體意志就會存在
+
+例如有三個人想決定一次旅行的價位，A 偏好 10 萬元、B 偏好 20 萬元、C 偏好 30 萬元，各自偏好的金額差越多滿意度就越低，這就是 Single-Peaked Preference
+
+Single-Peaked Preference 可以保證孔多塞悖論不會出現，並且此時**中位數選民（Median Voter）的偏好，會自動成為孔多塞贏家**，這件事稱為中位數選民定理（Median Voter Theorem）
+
+現實應用：假設選民偏好的候選人或政見可以被畫在一個一維的光譜上，在單峰偏好的前提下，只要候選人或政黨想贏得選舉，他們就會不斷向光譜正中間的「中位數選民」靠攏（這也是為什麼兩黨制或多黨民主國家的政黨政見常趨於同質化、打中間牌）
+
+## 結論
+
+社會選擇理論告訴我們完美的投票制度不存在，且集體決策是件困難的事。即使理論上完美的公平難以達成，現實生活中也有許多額外的因素是必須考慮的，因此我們不會濫用 Plurality 犧牲少數人的權利，也不會執著於用孔多塞贏家當最佳解。投票制度不是關於找到完美的解，而是一套充滿調整與妥協的系統。理解演算法的局限、權衡賽局的利弊、在效率與正義之間找到當下的平衡點，是在社會中生活的我們該思考的事
 
 ## Reference
+
+- [Dr. Hsu-Chun Hsiao](https://www.csie.ntu.edu.tw/~hchsiao)
+- [菜市場政治學](https://whogovernstw.org/2014/05/20/fangyuchen1/)
+- [A Set of Independent Necessary and Sufficient Conditions for Simple Majority Decision](https://doi.org/10.2307/1907651)
+- [A Difficulty in the Concept of Social Welfare](https://doi.org/10.1086/256963)
+- [Strategy-proofness and Arrow's Conditions](https://doi.org/10.1016/0022-0531(75)90050-2)
+- [Voting Schemes for Which It Can Be Difficult to Tell Who Won the Election](https://doi.org/10.1007/BF00303169)
+- [2000 年中華民國總統選舉](https://zh.wikipedia.org/zh-tw/2000%E5%B9%B4%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E7%B8%BD%E7%B5%B1%E9%81%B8%E8%88%89)
+
+## Appendix：獵人協會會長選舉
+
+尼特羅會長死後留下遺言，下任會長由全體獵人投票選出，投票率沒有達到 95% 就作廢重投。十二支用抽籤決定細節，抽中的是金寫的四條規則：
+
+1. 661 名獵人全都是選民，也全都是候選人
+2. 第一輪沒有人過半，就由前 16 名進入下一輪，之後每輪砍半（16 → 8 → 4 → 2），直到有人過半
+3. 投票率未達 95%，該輪作廢重投，候選人數不變
+4. 記名投票，不寫名字的票無效
+
+不能棄權不能匿名的多輪投票制，最後投了 9 輪才結束
+
+![HUNTER X HUNTER](https://res.cloudinary.com/dazoegq66/image/upload/v1792598010/voting/hisoka_blank_ballot.png)
+
+
+### 金
+
+- 95% 門檻：只要超過 5% 的人不投票整輪就作廢，選舉隨時可能卡死。比的是誰能把不想投票的人逼出來
+- 記名投票：等於取消了秘密投票，每個人的立場都攤在陽光下，棄保、施壓、派系綁票都能被看見
+- 轉移注意力：用最後一條誇張的規則轉移十二隻的注意力，掩蓋自己操作規則的事實
+
+選舉的結果再次揭示全體意志並不存在，因為規則是金訂的，結果也跟他想得差不多
+
+### 帕里斯通
+
+帕里斯通有大批忠於他的協專獵人，第一輪就拿下近 4 成的票，之後一路領先
+
+他常常做對自己不利的事，例如提議沒投票的人要暫時沒收執照，結果棄權的人反而變多，投票率遲遲過不了 95%，選舉一拖再拖，耗盡反對派（綺多、米才伊史多姆等人）的體力，而他的目的只是為了找樂子
+
+### 綺多
+
+穩健治理、沒什麼心機的十二支。她一路排在前幾名，但票數一直只有帕里斯通的零頭：既沒有帕里斯通的組織票，也沒有雷歐力的情緒號召，這是傳統中間派被極端陣營擠壓的悲劇
+
+為了擋下最討厭的人，她決定啟用**棄保**支持雷歐力當選
+
+### 結局：不在乎贏的人
+
+帕里斯通當選後，當場任命綺多為副會長，然後立刻辭職，綺多成為第 14 任會長
+
+綺多跟十二支在乎的是選舉勝負與協會權力，帕里斯通在乎的只是遊戲本身。當大家在算票數、算棄保時，他玩的是證明自己能掌控這套系統，再把治理協會的麻煩丟給綺多的遊戲
+
+所有投票演算法都有一個隱含的假設：候選人想贏。一旦遇到不在乎結果的玩家，演算法能決定誰拿最多票，卻決定不了接下來會發生什麼
 

@@ -189,6 +189,16 @@ body {
   color: #fb923c;
 }
 
+/* Bold text uses an accent color, distinct from blue links and orange math highlights */
+.prose strong {
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.dark .prose strong {
+  color: #a78bfa;
+}
+
 .dark .prose h2,
 .dark .prose h3 {
   color: #f3f4f6;
