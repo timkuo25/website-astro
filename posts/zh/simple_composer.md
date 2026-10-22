@@ -10,7 +10,9 @@ tags: ["React", "Axios", "Express", "MongoDB"]
 
 An app that helps you write songs
 
-[Source Code](https://github.com/timkuo25/SimpleComposer), [Demo video](https://youtu.be/qE7vtyHC7jI)
+[Source Code](https://github.com/timkuo25/SimpleComposer)
+
+<iframe src="https://www.youtube-nocookie.com/embed/qE7vtyHC7jI" title="Simple Composer Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 
 Frontend: React, Axios, Tonal.js, Howler.js
 
