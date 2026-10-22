@@ -25,7 +25,7 @@ const slugs = posts.map((post) => post.slug);
 <BaseLayout section="tech" lang={htmlLang[lang]} title={title} description={description}>
   {/* On mobile the categories move into the header's hamburger menu. */}
   <CategorySidebar slot="mobile-nav" {...sidebarProps} />
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 flex flex-col sm:flex-row gap-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 flex flex-col sm:flex-row gap-10">
     <aside class="hidden sm:block sm:w-56 shrink-0">
       <CategorySidebar {...sidebarProps} />
       <TotalViews slugs={slugs} class="flex mt-8 pt-6 border-t border-gray-100 dark:border-gray-800" />

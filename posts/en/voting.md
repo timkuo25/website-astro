@@ -243,8 +243,8 @@ In Yoshihiro Togashi's *Hunter × Hunter*, after Chairman Netero died, he left a
 
 1. All 661 Hunters are both voters and candidates
 2. If nobody wins a majority in the first round, the top 16 advance to the next round, and the field is halved each round after that (16 → 8 → 4 → 2) until someone wins a majority
-3. If turnout falls below 95%, that round is void and held again with the same number of candidates
-4. Votes must be signed; unsigned ballots are invalid
+3. If turnout falls below 95%, that round is void and held again
+4. Votes must be signed
 
 A multi-round system where you can neither abstain nor vote anonymously. It took 9 rounds to finish.
 
@@ -252,7 +252,7 @@ A multi-round system where you can neither abstain nor vote anonymously. It took
 
 ### Ging: the one who saw through the rules and decided $F$
 
-- The 95% threshold: if more than 5% of people don't vote, the whole round is void, so the election can deadlock at any moment. The contest becomes about who can drag reluctant voters to the polls
+- The 95% threshold: if more than 5% of people don't vote, the whole round is void, so the election can deadlock at any moment, and the contest becomes about who can drag reluctant voters to the polls
 - Signed ballots: this effectively abolishes the secret ballot. Everyone's position is out in the open, and tactical voting, pressure, and factional vote-herding all become visible
 - Misdirection: he used an outrageous final rule to draw the Zodiacs' attention, covering up the fact that he had rigged the rules
 
@@ -264,6 +264,12 @@ Pariston had a large bloc of Association-exclusive Hunters loyal to him. He took
 
 He often did things that worked against himself. For example, he proposed temporarily confiscating the licenses of Hunters who didn't vote, which only made more people abstain. Turnout kept falling short of 95% and the election dragged on, wearing down the opposition (Cheadle, Mizaistom, and others), and all he wanted was to have fun.
 
+### Leorio: the emotional dark horse with nothing to lose
+
+Leorio punched Ging in front of every Hunter, furious that Ging wouldn't visit his gravely injured son Gon. Once the video spread, Leorio's vote count shot into the top ranks. He won the eighth round and for a while posed a real threat to Pariston.
+
+He had no platform and no organization; he only wanted to save Gon. He stood for pure emotional voting: people voted for him to express anger at, or agreement with, a single event. Votes like these come fast and go just as fast. After Gon recovered and returned to the hall, Leorio withdrew from the election, handing control of the race back to Pariston.
+
 ### Cheadle: the moderate with no room to survive
 
 A Zodiac who stands for steady governance and has little guile. She stayed near the top throughout, but her vote count was always a fraction of Pariston's: she had neither Pariston's organized bloc nor Leorio's emotional pull. It's the classic tragedy of the traditional moderate being squeezed by the extremes.
@@ -274,6 +280,6 @@ To stop the candidate she hated most, she resorted to **tactical voting** and th
 
 After winning, Pariston immediately appointed Cheadle as vice-chairman and then resigned on the spot, making Cheadle the 14th chairman.
 
-Cheadle and the Zodiacs cared about winning the election and controlling the Association. Pariston cared only about the game itself. While everyone else was counting votes and calculating tactical moves, the game he was playing was to prove he could control the system, then dump the burden of running the Association on Cheadle.
+Cheadle and the Zodiacs cared about winning the election and controlling the Association. Pariston cared only about the game itself. While everyone else was counting votes and calculating tactical moves, he wanted to prove he could control the system, then hand the burden of running the Association back to Cheadle.
 
 Every voting algorithm carries a hidden assumption: candidates want to win. Once you meet a player who doesn't care about the outcome, the algorithm can decide who gets the most votes, but not what happens next.

@@ -4,6 +4,7 @@ date: "2026-05-19"
 excerpt: "還敢 vibe coding"
 sections: ["project"]
 tags: ["Next.js", "Prisma", "PostgreSQL", "Docker"]
+draft: true
 ---
 
 紀錄一下搞一個工作 dashboard 的過程

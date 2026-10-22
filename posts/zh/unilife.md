@@ -10,7 +10,7 @@ tags: ["pygame"]
 
 ## 安裝
 
-[Link](https://github.com/timkuo25/UniLife)
+[Source Code](https://github.com/timkuo25/UniLife)
 
 平台：Windows
 

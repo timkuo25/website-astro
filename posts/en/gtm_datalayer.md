@@ -1,6 +1,6 @@
 ---
 title: "GTM, dataLayer, GA4"
-date: "2026-10-20"
+date: "2025-04-22"
 excerpt: "Know yourself, know your users (2)"
 sections: ["tech"]
 categories: ["martech"]

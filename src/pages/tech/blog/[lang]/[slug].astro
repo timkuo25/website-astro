@@ -41,7 +41,7 @@ const basePath = `/tech/blog/${lang}`;
             )
           }
 
-          <Tags tags={post.tags} />
+          <Tags tags={post.tags} size="md" />
 
           <div class="flex items-center gap-2 mt-4 text-xs text-gray-400 tracking-wide dark:text-gray-500">
             <span>{readingMinutes} min read</span>
@@ -51,7 +51,7 @@ const basePath = `/tech/blog/${lang}`;
 
         {!post.translated && <UntranslatedNotice />}
 
-        <div class="prose"><Content /></div>
+        <div class="prose text-[1.0625rem]"><Content /></div>
       </article>
 
       <PostNav prev={prev} next={next} basePath={basePath} />

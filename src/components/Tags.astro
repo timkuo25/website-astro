@@ -2,16 +2,22 @@
 interface Props {
   tags: string[];
   class?: string;
+  size?: 'sm' | 'md';
 }
 
-const { tags, class: className = 'mt-4' } = Astro.props;
+const { tags, class: className = 'mt-4', size = 'sm' } = Astro.props;
 ---
 
 {
   tags.length > 0 && (
     <div class:list={['flex flex-wrap gap-2', className]}>
       {tags.map((tag) => (
-        <span class="text-xs px-2 py-1 rounded-md bg-blue-50 text-blue-700 dark:bg-blue-400/10 dark:text-blue-300">
+        <span
+          class:list={[
+            'rounded-md bg-blue-50 text-blue-700 dark:bg-blue-400/10 dark:text-blue-300',
+            size === 'md' ? 'text-sm px-2.5 py-1' : 'text-xs px-2 py-1',
+          ]}
+        >
           {tag}
         </span>
       ))}

@@ -1,14 +1,15 @@
 ---
 import { isLocale, localeLabels, locales } from '../lib/i18n';
 
-// Only blog and project routes are localized (/blog/<lang>/...,
-// /tech/blog/<lang>/..., /tech/project/<lang>/...), so this reads the current
-// path itself and renders nothing elsewhere — that way it can live in the
-// shared Header.
+// Only blog routes offer a language choice (/blog/<lang>/...,
+// /tech/blog/<lang>/...), so this reads the current path itself and renders
+// nothing elsewhere — that way it can live in the shared Header. Project
+// routes are localized too (/tech/project/<lang>/...) but deliberately get
+// no switcher.
 // build.format 'file' makes the build-time pathname end in ".html"; links
 // elsewhere omit it, so strip it here too.
 const pathname = Astro.url.pathname.replace(/\.html$/, '');
-const match = pathname.match(/^((?:\/tech)?\/(?:blog|project))\/([a-z]+)((?:\/.*)?)$/);
+const match = pathname.match(/^((?:\/tech)?\/blog)\/([a-z]+)((?:\/.*)?)$/);
 const parsed = match && isLocale(match[2]) ? { base: match[1], current: match[2], rest: match[3] } : null;
 ---
 
