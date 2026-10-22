@@ -11,7 +11,7 @@ tags: ["Social Choice Theory", "Condorcet method", "Voting System", "Median Vote
 
 Social choice theory asks one question: how do we combine the preferences of every individual in a group into a collective decision that represents the will of the whole group?
 
-Put more formally, we want to find a system or algorithm (a function $F(X, P)$).
+In mathematical terms, we want to find a system or algorithm (a function $F(X, P)$).
 
 The input is a set of options $X = \{A, B, C, D, \dots\}$ and the individual preferences $P = (P_1, P_2, \dots, P_n)$:
 
@@ -31,14 +31,14 @@ $$
 
 Here $\mathcal{F}$ is the set of all possible systems, and $G$ measures how well a system "represents the general will".
 
-You may have noticed the catch: **what does it even mean to represent the general will??** How is it defined? Does such a thing exist? Something that feels this familiar turns out to be surprisingly hard to pin down.
+You may have noticed the catch: **what does it even mean to represent the general will??**
+
+How is it defined? Does such a thing exist? Something that feels this familiar turns out to be surprisingly hard to pin down.
 
 I can't give a general, precise definition, but I can list the conclusions first and then go through them one by one.
 
-**Does a general will exist?**
-
-|                   | In theory          | In reality     |
-| ----------------- | ------------------ | -------------- |
+| Does a general will exist? | In theory          | In reality     |
+| -------------------------- | ------------------ | -------------- |
 | 2 options         | Exists             | Doesn't exist  |
 | 3 or more options | Not guaranteed     | Doesn't exist  |
 
@@ -62,11 +62,11 @@ Majority rule satisfies the following conditions (May's Theorem):
 
 These three conditions are the core spirit of majority rule. They don't fully capture "fairness", but they are the most widely shared interpretation of fairness people have come up with.
 
-But even when a decision is made by majority rule, is that decision really the "general will" in real life? Clearly not. That's why we say that with two options, majority rule can produce a collective decision in theory, while in reality there are many situations where the rules have to be constrained to avoid the [tyranny of the majority](https://en.wikipedia.org/wiki/Ostracism).
+But even when a decision is made by majority rule, can that decision really represent the "general will" in real life? Clearly not, because the minority's views get ignored. That's why we say that with two options, majority rule can produce a collective decision in theory, while in reality there are many situations where the rules have to be constrained to avoid the [tyranny of the majority](https://en.wikipedia.org/wiki/Ostracism).
 
 ## Three options: the general will is a false premise
 
-If you grew up in Taiwan or any democracy, you probably believe that "as long as everyone votes, we can find the collective will, the wisdom of the people". Two classic theorems shatter this romantic notion:
+If you grew up in Taiwan or any democracy, you probably believe that "as long as everyone votes, we can find the collective will, the wisdom of the people". Two theorems refute this notion:
 
 1. **Arrow's impossibility theorem** proves that with 3 or more options, no ranked voting system satisfies a basic set of fairness conditions
 2. The **Gibbard-Satterthwaite theorem** proves that with 3 or more options, no system can stop people from lying
@@ -80,7 +80,7 @@ These two theorems puncture our idealized picture of democratic politics. They t
 Earlier we said we want a $G$ that represents the general will. So what does $G$ look like? Each $G$ is really one definition (criterion) of the "general will", and for each criterion there are different systems $F$ that implement it, for example:
 
 1. Utility maximization → Borda count
-2. Majority criterion → plurality, two-round system
+2. Majority → plurality, two-round system
 3. Condorcet criterion → [Copeland](https://en.wikipedia.org/wiki/Copeland%27s_method), Schulze, Dodgson
 
 Written as $G$, the majority criterion and the Condorcet criterion simply score 1 if satisfied and 0 if not.
@@ -100,8 +100,6 @@ Each person has a "utility" (how much they like it) for each option. The greater
 $$
 G(F) = \sum_{i=1}^{n} u_i\big(F(X, P)\big)
 $$
-
-The system that maximizes $G$ simply picks the option with the highest total utility:
 
 $$
 F(X, P) = \arg\max_{x \in X} \sum_{i=1}^{n} u_i(x)
@@ -128,29 +126,21 @@ $$
 
 In the example above, A gets 2 votes and B gets 1, so A wins.
 
-The most common problem is **vote splitting**. You need a few more voters to see it, so suppose there are 9:
+The most common problem with plurality is [vote splitting](https://en.wikipedia.org/wiki/Vote_splitting).
 
-| Voters | Ranking               |
-| ------ | --------------------- |
-| 4      | $A \succ B \succ C$   |
-| 3      | $B \succ C \succ A$   |
-| 2      | $C \succ B \succ A$   |
+The **two-round system** sends the top two to a second round when nobody wins a majority in the first.
 
-A has the most votes (4) and wins, yet the other 5 voters all rank A last.
-
-The **two-round system** sends the top two to a second round when nobody wins a majority in the first. In the second round it's A versus B: the 2 voters who chose C switch to B, and B wins 5 to 4.
-
-Plurality and the two-round system both satisfy the majority criterion, but in this example nobody has a majority (A has only 4/9), so the criterion makes no demand and the two systems pick different winners. The majority criterion alone isn't enough to determine the general will.
+Plurality and the two-round system both satisfy the majority criterion, yet the two systems can pick different winners. The majority criterion alone isn't enough to determine the general will.
 
 ### 3. Veto
 
-If anyone vetoes an option, it's removed. In our example, A wouldn't win. This approach violates Neutrality and efficiency, and tends to preserve the status quo.
+If anyone vetoes an option, it's removed. In our example, A is vetoed by Bob and wouldn't win. This approach violates Neutrality and efficiency, and tends to preserve the status quo.
 
 The most famous example is probably the [veto power of the five permanent members](https://www.cna.com.tw/news/aopl/202204260140.aspx) of the UN Security Council.
 
 ### 4. Condorcet criterion
 
-[Condorcet](https://en.wikipedia.org/wiki/Marquis_de_Condorcet) **pits every pair of options against each other**. If one option beats every other option head-to-head (the Condorcet winner), it is the general will, and the system must choose it.
+[Condorcet](https://en.wikipedia.org/wiki/Marquis_de_Condorcet) proposed **pitting every pair of options against each other**. If one option beats every other option head-to-head (the Condorcet winner), it is the general will, and the system must choose it.
 
 | Matchup | Result        |
 | ------- | ------------- |
@@ -160,7 +150,7 @@ The most famous example is probably the [veto power of the five permanent member
 
 A is the Condorcet winner. That matches plurality but not Borda, so Borda **does not satisfy** the Condorcet criterion.
 
-Some of you have probably already spotted the problem: what if preferences behave like rock-paper-scissors? Scissors beats paper, paper beats rock, and rock beats scissors, so the Condorcet criterion breaks down. This is the [Condorcet paradox](https://en.wikipedia.org/wiki/Condorcet_paradox): collective preferences can be cyclic even when individual preferences are not.
+Some of you have probably already spotted the problem: what if preferences behave like rock-paper-scissors? Scissors beats paper, paper beats rock, and rock beats scissors, so the Condorcet criterion breaks down. This is called the [Condorcet paradox](https://en.wikipedia.org/wiki/Condorcet_paradox): collective preferences can be cyclic even when individual preferences are not.
 
 ### 5. Dodgson's method
 
@@ -190,7 +180,7 @@ Kenneth Arrow proved that with 3 or more candidates, no voting system can satisf
 
 Like the three conditions of May's Theorem, these four conditions are the most widely shared interpretation of fairness people have come up with for the case of multiple options.
 
-Arrow's impossibility theorem shows that perfect fairness is logically impossible. For any collective choice, even if individual preferences stay the same, different rules produce different outcomes, each with its own trade-offs.
+Arrow's theorem shows that perfect fairness is logically impossible. For any collective choice, even if individual preferences stay the same, different rules produce different outcomes, each with its own trade-offs.
 
 ## Manipulation, strategyproofness, and Taiwan's 2000 presidential election
 
@@ -233,7 +223,7 @@ Single-peaked preferences guarantee that the Condorcet paradox won't occur, and 
 
 In practice: suppose voters' preferred candidates or policies can be placed on a one-dimensional spectrum. Under single-peaked preferences, any candidate or party that wants to win will keep moving toward the "median voter" in the middle of the spectrum (which is why party platforms in two-party and multi-party democracies often converge and play to the center).
 
-## Conclusion
+## Summary
 
 Social choice theory tells us that a perfect voting system doesn't exist and that collective decision-making is hard. Even though perfect fairness is hard to achieve in theory, real life brings many additional factors that must be considered. So we neither abuse plurality at the expense of minority rights, nor insist on the Condorcet winner as the optimal answer. A voting system isn't about finding the perfect solution; it's a system full of adjustments and compromises. Understanding the limits of algorithms, weighing the pros and cons of the game, and finding the right balance between efficiency and justice for the moment are things all of us living in society should think about.
 
@@ -249,7 +239,7 @@ Social choice theory tells us that a perfect voting system doesn't exist and tha
 
 ## Appendix: The Hunter Association chairman election
 
-After Chairman Netero died, he left a will stating that the next chairman would be elected by a vote of all Hunters, and that any vote with turnout below 95% would be thrown out and held again. The Zodiacs drew lots to decide the details, and the slip drawn was Ging's four rules:
+In Yoshihiro Togashi's *Hunter × Hunter*, after Chairman Netero died, he left a will stating that the next chairman would be elected by a vote of all Hunters, and that any vote with turnout below 95% would be thrown out and held again. The Zodiacs drew lots to decide the details, and the slip drawn was Ging's four rules:
 
 1. All 661 Hunters are both voters and candidates
 2. If nobody wins a majority in the first round, the top 16 advance to the next round, and the field is halved each round after that (16 → 8 → 4 → 2) until someone wins a majority
@@ -258,9 +248,9 @@ After Chairman Netero died, he left a will stating that the next chairman would 
 
 A multi-round system where you can neither abstain nor vote anonymously. It took 9 rounds to finish.
 
-![HUNTER X HUNTER](https://res.cloudinary.com/dazoegq66/image/upload/v1792598010/voting/hisoka_blank_ballot.png)
+![Hunter × Hunter](https://res.cloudinary.com/dazoegq66/image/upload/v1792598010/voting/hisoka_blank_ballot.png)
 
-### Ging
+### Ging: the one who saw through the rules and decided $F$
 
 - The 95% threshold: if more than 5% of people don't vote, the whole round is void, so the election can deadlock at any moment. The contest becomes about who can drag reluctant voters to the polls
 - Signed ballots: this effectively abolishes the secret ballot. Everyone's position is out in the open, and tactical voting, pressure, and factional vote-herding all become visible
@@ -268,13 +258,13 @@ A multi-round system where you can neither abstain nor vote anonymously. It took
 
 The result of the election shows once again that a general will doesn't exist: the rules were written by Ging, and the outcome turned out much as he expected.
 
-### Pariston
+### Pariston: the powerful troublemaker candidate
 
 Pariston had a large bloc of Association-exclusive Hunters loyal to him. He took nearly 40% of the vote in the first round and led the whole way.
 
 He often did things that worked against himself. For example, he proposed temporarily confiscating the licenses of Hunters who didn't vote, which only made more people abstain. Turnout kept falling short of 95% and the election dragged on, wearing down the opposition (Cheadle, Mizaistom, and others), and all he wanted was to have fun.
 
-### Cheadle
+### Cheadle: the moderate with no room to survive
 
 A Zodiac who stands for steady governance and has little guile. She stayed near the top throughout, but her vote count was always a fraction of Pariston's: she had neither Pariston's organized bloc nor Leorio's emotional pull. It's the classic tragedy of the traditional moderate being squeezed by the extremes.
 
