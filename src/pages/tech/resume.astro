@@ -135,7 +135,7 @@ const orgClass = 'text-gray-500 dark:text-gray-400';
 const heading = 'text-sm font-semibold uppercase tracking-widest text-blue-400 mb-6 dark:text-blue-300';
 ---
 
-<BaseLayout section="tech" title="Resume" description="Chung-Chia Kuo's work and education history">
+<BaseLayout section="tech" title="Resume" description="Chung-Chia Kuo's work and education history" noindex>
   <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16 print:p-0 resume">
     <section>
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-black dark:text-gray-100">Chung-Chia Kuo</h1>
@@ -149,9 +149,9 @@ const heading = 'text-sm font-semibold uppercase tracking-widest text-blue-400 m
         <a href="/tech/blog/en" class="text-blue-500 hover:underline dark:text-blue-400">technical blog</a>.
       </p>
       <div class="mt-5 flex items-center gap-4">
-        <a href="mailto:timkuo860930@gmail.com" class={contactLink} aria-label="Email">
+        <a href="mailto:contact@chiakuo.com" class={contactLink} aria-label="Email">
           <Mail size={20} class="print:hidden" />
-          <span class="hidden print:inline">timkuo860930@gmail.com</span>
+          <span class="hidden print:inline">contact@chiakuo.com</span>
         </a>
         <a href="https://github.com/timkuo25" target="_blank" rel="noopener noreferrer" class={contactLink} aria-label="GitHub">
           <span class="print:hidden"><GithubIcon size={20} /></span>

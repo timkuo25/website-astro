@@ -11,6 +11,8 @@ interface Props {
   description?: string;
   lang?: string;
   section: 'general' | 'tech';
+  // Keeps the page out of search results while leaving it reachable by link.
+  noindex?: boolean;
 }
 
 const {
@@ -18,6 +20,7 @@ const {
   description = 'Personal website of TCK',
   lang = 'en',
   section,
+  noindex = false,
 } = Astro.props;
 
 const header =
@@ -45,6 +48,7 @@ const header =
         the links and the sitemap. */}
     <link rel="canonical" href={new URL(Astro.url.pathname.replace(/(index)?\.html$/, ''), Astro.site)} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    {noindex && <meta name="robots" content="noindex" />}
     <Font cssVariable="--font-geist-sans" preload />
     <Font cssVariable="--font-geist-mono" />
     <ClientRouter />

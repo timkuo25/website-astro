@@ -18,7 +18,8 @@ export default defineConfig({
   // Used for canonical URLs and the sitemap.
   site: 'https://chiakuo.com',
 
-  integrations: [sitemap()],
+  // The resume is noindex, so leave it out of the sitemap too.
+  integrations: [sitemap({ filter: (page) => !page.includes('/tech/resume') })],
 
   fonts: [
     {
