@@ -2,6 +2,7 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeHighlight from 'rehype-highlight';
@@ -14,6 +15,11 @@ import {
 
 // https://astro.build/config
 export default defineConfig({
+  // Used for canonical URLs and the sitemap.
+  site: 'https://chiakuo.com',
+
+  integrations: [sitemap()],
+
   fonts: [
     {
       name: 'Geist',

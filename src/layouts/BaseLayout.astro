@@ -40,6 +40,11 @@ const header =
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {/* Points search engines at chiakuo.com even when served from workers.dev.
+        build.format 'file' makes the pathname end in .html; drop it to match
+        the links and the sitemap. */}
+    <link rel="canonical" href={new URL(Astro.url.pathname.replace(/(index)?\.html$/, ''), Astro.site)} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <Font cssVariable="--font-geist-sans" preload />
     <Font cssVariable="--font-geist-mono" />
     <ClientRouter />

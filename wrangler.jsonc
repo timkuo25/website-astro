@@ -7,6 +7,13 @@
   "name": "website-astro",
   "main": "worker/index.ts",
   "compatibility_date": "2026-10-01",
+  // Custom domains are set here rather than in the dashboard so deploys keep them.
+  // www only exists so its DNS record is created; a dashboard Redirect Rule
+  // sends it to the apex before the Worker runs.
+  "routes": [
+    { "pattern": "chiakuo.com", "custom_domain": true },
+    { "pattern": "www.chiakuo.com", "custom_domain": true },
+  ],
   "assets": {
     "directory": "./dist",
     "run_worker_first": ["/api/*"],
